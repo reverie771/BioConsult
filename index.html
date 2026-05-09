@@ -872,6 +872,323 @@ a.contact-item-value:hover { color: var(--accent-light); }
 }
 .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
 
+/* Nav dropdown / submenu (Audit Financiar → Rapoarte transparență) */
+.nav .has-submenu { position: relative; }
+.nav .has-submenu > a::after {
+  content: '';
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg) translate(-2px, -1px);
+  margin-left: 0.5rem;
+  opacity: 0.55;
+  transition: transform .25s, opacity .25s;
+}
+.nav .has-submenu:hover > a::after,
+.nav .has-submenu:focus-within > a::after {
+  opacity: 1;
+  transform: rotate(225deg) translate(-2px, -1px);
+}
+.nav .has-submenu > a::before { display: none; }
+.submenu {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: -1rem;
+  min-width: 280px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 40px rgba(10,22,40,0.12);
+  padding: 0.6rem 0;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity .22s ease, transform .22s ease, visibility .22s;
+  z-index: 200;
+}
+.nav .has-submenu:hover .submenu,
+.nav .has-submenu:focus-within .submenu { opacity: 1; visibility: visible; transform: translateY(0); }
+.submenu li { margin: 0; }
+.submenu a {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 1.2rem !important;
+  font-size: 0.82rem !important;
+  letter-spacing: 0 !important;
+  color: var(--ink) !important;
+  text-transform: none !important;
+  font-weight: 500;
+  border-bottom: 1px solid var(--line-soft);
+}
+.submenu li:last-child a { border-bottom: none; }
+.submenu a::after { display: none !important; }
+.submenu a:hover { background: var(--paper-soft); color: var(--accent-deep) !important; }
+.submenu .pdf-flag {
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  padding: 0.18rem 0.45rem;
+  border-radius: 2px;
+  font-weight: 600;
+}
+.submenu a:hover .pdf-flag { color: var(--accent-deep); border-color: var(--accent); }
+
+/* Photo service cards (top-of-page hero, Velican-style) */
+.svc-cards-section {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 4rem var(--pad-x) 2rem;
+}
+.svc-cards-intro {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 4rem;
+  align-items: end;
+  margin-bottom: 3.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--line);
+}
+.svc-cards-intro h1 {
+  font-family: var(--serif);
+  font-weight: 320;
+  font-size: clamp(2.2rem, 4.6vw, 3.8rem);
+  line-height: 1.02;
+  letter-spacing: -0.028em;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+  text-wrap: pretty;
+  max-width: 22ch;
+}
+.svc-cards-intro h1 em {
+  font-style: italic;
+  color: var(--accent-deep);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+.svc-cards-intro p {
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.65;
+  max-width: 36ch;
+  padding-bottom: 0.4rem;
+}
+.svc-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.4rem;
+}
+.svc-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  background: var(--ink);
+  overflow: hidden;
+  transition: transform .35s cubic-bezier(0.2,0.8,0.2,1);
+}
+.svc-card:hover { transform: translateY(-4px); }
+.svc-card .photo {
+  aspect-ratio: 3/4;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  filter: grayscale(0.25) contrast(1.05);
+  transition: filter .4s ease, transform .8s cubic-bezier(0.2,0.8,0.2,1);
+}
+.svc-card:hover .photo { filter: grayscale(0); transform: scale(1.04); }
+.svc-card .photo::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,22,40,0.05) 0%, rgba(10,22,40,0.55) 60%, rgba(10,22,40,0.85) 100%);
+}
+.svc-card .label {
+  position: absolute;
+  inset: auto 1.4rem 4.4rem 1.4rem;
+  z-index: 2;
+}
+.svc-card .num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 0.95rem;
+  color: var(--accent-light);
+  display: block;
+  margin-bottom: 0.6rem;
+  font-variation-settings: "opsz" 80, "SOFT" 100;
+}
+.svc-card .title {
+  font-family: var(--serif);
+  font-weight: 350;
+  font-size: 1.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.014em;
+  color: var(--paper);
+  font-variation-settings: "opsz" 80, "SOFT" 40;
+  text-wrap: pretty;
+}
+.svc-card .title em {
+  font-style: italic;
+  color: var(--accent-light);
+  font-variation-settings: "opsz" 80, "SOFT" 100;
+}
+.svc-card .more {
+  position: absolute;
+  inset: auto 1.4rem 1.4rem 1.4rem;
+  z-index: 2;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(244,239,230,0.22);
+  transition: gap .25s, color .25s;
+}
+.svc-card:hover .more { gap: 0.95rem; color: var(--paper); }
+
+/* Contact info trio (Velican-style strip) */
+.info-trio {
+  background: var(--paper-soft);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.info-trio-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.info-trio-item {
+  padding: 3rem 2rem;
+  border-right: 1px solid var(--line);
+  text-align: center;
+}
+.info-trio-item:last-child { border-right: none; }
+.info-trio-item .lbl {
+  font-size: 0.66rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+}
+.info-trio-item .lbl::before,
+.info-trio-item .lbl::after {
+  content: '';
+  width: 18px; height: 1px;
+  background: var(--accent);
+  opacity: 0.6;
+}
+.info-trio-item .v {
+  font-family: var(--serif);
+  font-weight: 350;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  letter-spacing: -0.008em;
+  color: var(--ink);
+  text-decoration: none;
+  display: block;
+  line-height: 1.4;
+  font-variation-settings: "opsz" 80, "SOFT" 40;
+  transition: color .2s;
+}
+a.info-trio-item .v:hover,
+.info-trio-item a:hover { color: var(--accent-deep); }
+.info-trio-item a { color: inherit; text-decoration: none; }
+
+/* Three info blocks (Velican-style: photo + heading + link) */
+.info-blocks {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 6rem var(--pad-x) 4rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.info-block {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s;
+}
+.info-block:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(10,22,40,0.08);
+  border-color: var(--accent);
+}
+.info-block .photo {
+  aspect-ratio: 4/3;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(0.3);
+  transition: filter .4s ease;
+}
+.info-block:hover .photo { filter: grayscale(0); }
+.info-block .body {
+  padding: 1.8rem 1.6rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  flex: 1;
+}
+.info-block .eyebrow {
+  font-size: 0.66rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  font-weight: 600;
+}
+.info-block h3 {
+  font-family: var(--serif);
+  font-weight: 350;
+  font-size: 1.3rem;
+  line-height: 1.2;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+  font-variation-settings: "opsz" 80, "SOFT" 40;
+  text-wrap: pretty;
+}
+.info-block h3 em {
+  font-style: italic;
+  color: var(--accent-deep);
+  font-variation-settings: "opsz" 80, "SOFT" 100;
+}
+.info-block p {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin-top: 0.2rem;
+}
+.info-block .more {
+  margin-top: auto;
+  padding-top: 1.2rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  transition: gap .25s, color .25s;
+}
+.info-block:hover .more { gap: 0.95rem; color: var(--accent-deep); }
+
 /* Responsive */
 @media (max-width: 980px) {
   .topbar-inner { padding: 0.6rem 1.2rem; flex-wrap: wrap; gap: 0.5rem 1.2rem; }
@@ -879,7 +1196,7 @@ a.contact-item-value:hover { color: var(--accent-light); }
   .logo-sub { display: none; }
   .nav { gap: 0.8rem; }
   .nav a:not(.nav-cta) { display: none; }
-  .hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 1.2rem 2rem; align-items: start; }
+  .nav .has-submenu { display: none; }
   .marquee-track > span { font-size: 1.15rem; padding: 0 1.4rem; }
   .about { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.2rem; }
   .about-visual { aspect-ratio: 4/5; max-height: 360px; }
@@ -900,6 +1217,20 @@ a.contact-item-value:hover { color: var(--accent-light); }
   .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
   .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
   .footer-brand { grid-column: 1 / -1; }
+  /* New section responsiveness */
+  .svc-cards-section { padding: 3rem 1.2rem 1.5rem; }
+  .svc-cards-intro { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 1.5rem; }
+  .svc-cards { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .svc-card .label { inset: auto 1rem 3.6rem 1rem; }
+  .svc-card .more { inset: auto 1rem 1rem 1rem; }
+  .svc-card .title { font-size: 1.15rem; }
+  .info-trio-inner { grid-template-columns: 1fr; }
+  .info-trio-item { padding: 2rem 1.2rem; border-right: none; border-bottom: 1px solid var(--line); }
+  .info-trio-item:last-child { border-bottom: none; }
+  .info-blocks { grid-template-columns: 1fr; gap: 1.4rem; padding: 4rem 1.2rem 2.5rem; }
+}
+@media (max-width: 600px) {
+  .svc-cards { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -925,8 +1256,20 @@ a.contact-item-value:hover { color: var(--accent-light); }
       <span>Bio <span class="logo-mark">·</span> Consult</span>
     </a>
     <nav class="nav">
+      <a href="index.html">Home</a>
       <a href="despre.html">Despre Noi</a>
-      <a href="audit.html">Audit Financiar</a>
+      <span class="has-submenu">
+        <a href="audit.html">Audit Financiar</a>
+        <ul class="submenu">
+          <li><a href="audit.html"><span>Despre serviciu</span></a></li>
+          <li><a href="#"><span>Raport transparență 2020</span><span class="pdf-flag">PDF</span></a></li>
+          <li><a href="#"><span>Raport transparență 2021</span><span class="pdf-flag">PDF</span></a></li>
+          <li><a href="#"><span>Raport transparență 2022</span><span class="pdf-flag">PDF</span></a></li>
+          <li><a href="#"><span>Raport transparență 2023</span><span class="pdf-flag">PDF</span></a></li>
+          <li><a href="#"><span>Raport transparență 2024</span><span class="pdf-flag">PDF</span></a></li>
+          <li><a href="#"><span>Raport transparență 2025</span><span class="pdf-flag">PDF</span></a></li>
+        </ul>
+      </span>
       <a href="insolventa.html">Insolvență</a>
       <a href="expertiza.html">Expertiză Contabilă</a>
       <a href="evaluari.html">Evaluări</a>
@@ -935,17 +1278,47 @@ a.contact-item-value:hover { color: var(--accent-light); }
   </div>
 </header>
 
-<section class="hero">
-  <div>
-    <div class="hero-eyebrow reveal delay-1">Cabinet de audit financiar — Activ din 2003</div>
-    <h1 class="reveal delay-2">Rigoare, claritate și <em>încredere</em> în fiecare cifră raportată.</h1>
+<!-- HERO: 4 photo service cards (Velican-style) -->
+<section class="svc-cards-section">
+  <div class="svc-cards-intro reveal">
+    <h1>Patru discipline reglementate. <em>Un singur</em> standard.</h1>
+    <p>Cabinet independent specializat în audit financiar, expertiză contabilă judiciară, evaluări autorizate și asistență în proceduri de insolvență. Sediu în Pitești.</p>
   </div>
-  <div class="hero-side reveal delay-3">
-    <p>Cabinet independent specializat în audit financiar, expertiză contabilă judiciară, evaluări autorizate și asistență în proceduri de insolvență.</p>
-    <div class="hero-meta">
-      <span>Sediu</span>
-      <strong>Pitești, România</strong>
-    </div>
+
+  <div class="svc-cards">
+    <!-- TODO: replace picsum.photos URLs with real photographs -->
+    <a href="audit.html" class="svc-card scroll-reveal">
+      <div class="photo" style="background-image: url('https://picsum.photos/seed/audit-bio/800/1000?grayscale');"></div>
+      <div class="label">
+        <span class="num">i.</span>
+        <span class="title">Audit <em>Financiar</em></span>
+      </div>
+      <span class="more">Află mai multe →</span>
+    </a>
+    <a href="expertiza.html" class="svc-card scroll-reveal">
+      <div class="photo" style="background-image: url('https://picsum.photos/seed/expertiza-bio/800/1000?grayscale');"></div>
+      <div class="label">
+        <span class="num">ii.</span>
+        <span class="title">Expertiză <em>Contabilă</em></span>
+      </div>
+      <span class="more">Află mai multe →</span>
+    </a>
+    <a href="insolventa.html" class="svc-card scroll-reveal">
+      <div class="photo" style="background-image: url('https://picsum.photos/seed/insolventa-bio/800/1000?grayscale');"></div>
+      <div class="label">
+        <span class="num">iii.</span>
+        <span class="title"><em>Insolvență</em></span>
+      </div>
+      <span class="more">Află mai multe →</span>
+    </a>
+    <a href="evaluari.html" class="svc-card scroll-reveal">
+      <div class="photo" style="background-image: url('https://picsum.photos/seed/evaluari-bio/800/1000?grayscale');"></div>
+      <div class="label">
+        <span class="num">iv.</span>
+        <span class="title">Evaluări <em>Autorizate</em></span>
+      </div>
+      <span class="more">Află mai multe →</span>
+    </a>
   </div>
 </section>
 
@@ -965,43 +1338,55 @@ a.contact-item-value:hover { color: var(--accent-light); }
   </div>
 </section>
 
-<section class="services" id="servicii">
-  <div class="services-inner">
-    <div class="services-head scroll-reveal">
-      <div>
-        <div class="section-label">II — Servicii</div>
-        <h2>Patru discipline reglementate. <em>Un singur</em> standard.</h2>
-      </div>
-      <p class="services-intro">Misiunile noastre acoperă întregul ciclu financiar al unei companii — de la auditul situațiilor anuale la evaluările autorizate și procedurile de insolvență.</p>
+<!-- Contact info trio (Velican-style strip) -->
+<section class="info-trio">
+  <div class="info-trio-inner">
+    <div class="info-trio-item">
+      <div class="lbl">Email</div>
+      <a href="mailto:oprea.luminita@yahoo.com" class="v">oprea.luminita@yahoo.com</a>
     </div>
-
-    <div class="service-list">
-      <a href="audit.html" class="service-row scroll-reveal">
-        <span class="num">i.</span>
-        <span class="title">Audit <em>Financiar</em></span>
-        <span class="desc">Audit statutar și voluntar al situațiilor financiare, conform Standardelor Internaționale de Audit (ISA). Atestare CAFR.</span>
-        <span class="arrow">Vezi mai mult →</span>
-      </a>
-      <a href="expertiza.html" class="service-row scroll-reveal">
-        <span class="num">ii.</span>
-        <span class="title">Expertiză <em>Contabilă</em></span>
-        <span class="desc">Expertize contabile judiciare și extrajudiciare, consultanță și asistență în litigii comerciale. Atestare CECCAR.</span>
-        <span class="arrow">Vezi mai mult →</span>
-      </a>
-      <a href="insolventa.html" class="service-row scroll-reveal">
-        <span class="num">iii.</span>
-        <span class="title"><em>Insolvență</em></span>
-        <span class="desc">Reorganizare, lichidare judiciară și mediere a creanțelor, cu respectarea echilibrată a drepturilor părților. Atestare UNPIR.</span>
-        <span class="arrow">Vezi mai mult →</span>
-      </a>
-      <a href="evaluari.html" class="service-row scroll-reveal">
-        <span class="num">iv.</span>
-        <span class="title">Evaluări <em>Autorizate</em></span>
-        <span class="desc">Evaluări de bunuri imobile, întreprinderi, bunuri mobile și instrumente financiare, cu rapoarte fundamentate. Atestare ANEVAR.</span>
-        <span class="arrow">Vezi mai mult →</span>
-      </a>
+    <div class="info-trio-item">
+      <div class="lbl">Telefon</div>
+      <a href="tel:+40744335654" class="v">+40 744 335 654</a>
+    </div>
+    <div class="info-trio-item">
+      <div class="lbl">Adresă</div>
+      <span class="v">Pitești, România</span>
     </div>
   </div>
+</section>
+
+<!-- Three info blocks (Velican-style: photo + heading + link) -->
+<section class="info-blocks">
+  <a href="contact.html" class="info-block scroll-reveal">
+    <div class="photo" style="background-image: url('https://picsum.photos/seed/audit-cta-bio/800/600?grayscale');"></div>
+    <div class="body">
+      <span class="eyebrow">— Solicită o discuție</span>
+      <h3>Dorești un audit pentru una din <em>firmele tale</em>?</h3>
+      <p>Suntem aici să te ajutăm cu orice problemă de ordin financiar.</p>
+      <span class="more">Mai mult →</span>
+    </div>
+  </a>
+
+  <a href="https://mfinante.gov.ro/" target="_blank" rel="noopener" class="info-block scroll-reveal">
+    <div class="photo" style="background-image: url('https://picsum.photos/seed/finante-bio/800/600?grayscale');"></div>
+    <div class="body">
+      <span class="eyebrow">— Ultimele informații</span>
+      <h3>Informații <em>financiare</em></h3>
+      <p>Află ultimele informații din domeniul financiar și fiscal.</p>
+      <span class="more">Mai mult →</span>
+    </div>
+  </a>
+
+  <a href="despre.html" class="info-block scroll-reveal">
+    <div class="photo" style="background-image: url('https://picsum.photos/seed/portofoliu-bio/800/600?grayscale');"></div>
+    <div class="body">
+      <span class="eyebrow">— Află părerile altora</span>
+      <h3>Portofoliu <em>clienți</em></h3>
+      <p>Companii care au avut încredere în noi de-a lungul a două decenii.</p>
+      <span class="more">Mai mult →</span>
+    </div>
+  </a>
 </section>
 
 <section class="partners" id="parteneri">
