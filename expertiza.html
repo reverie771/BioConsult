@@ -8,23 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Hanken+Grotesk:wght@300..800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="interior.css">
-<style>
-.partner-card {
-  border: 1px solid var(--line); background: var(--paper-soft);
-  padding: 2rem; display: grid; grid-template-columns: auto 1fr; gap: 1.6rem; align-items: start;
-}
-.partner-card .seal {
-  width: 64px; height: 64px; border-radius: 50%; background: var(--ink); color: var(--accent-light);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--serif); font-style: italic; font-size: 1.6rem;
-  font-variation-settings: "opsz" 80, "SOFT" 100;
-}
-.partner-card .name { font-family: var(--serif); font-weight: 360; font-size: 1.2rem; letter-spacing: -0.012em; margin-bottom: 0.2rem; font-variation-settings: "opsz" 80, "SOFT" 40; }
-.partner-card .role { font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-deep); font-weight: 600; margin-bottom: 0.9rem; }
-.partner-card .creds { font-size: 0.86rem; color: var(--ink-soft); line-height: 1.55; }
-.partner-card .contact { margin-top: 0.9rem; padding-top: 0.9rem; border-top: 1px solid var(--line); font-size: 0.84rem; color: var(--ink-soft); display: flex; flex-direction: column; gap: 0.25rem; }
-.partner-card .contact a { color: var(--accent-deep); text-decoration: none; }
-</style>
+
 </head>
 <body>
 
@@ -38,114 +22,58 @@
 </div></div>
 
 <header class="header"><div class="header-inner">
-  <a href="index.html" class="logo"><span>Bio <span class="logo-mark">·</span> Consult</span></a>
+  <a href="index.html" class="logo">
+    <span>Bio <span class="logo-mark">·</span> Consult</span>
+  </a>
   <nav class="nav">
-    <a href="despre.html">Despre Noi</a>
-    <a href="audit.html">Audit Financiar</a>
-    <a href="insolventa.html">Insolvență</a>
-    <a href="expertiza.html" class="active">Expertiză Contabilă</a>
-    <a href="evaluari.html">Evaluări</a>
-    <a href="contact.html" class="nav-cta">Contact</a>
-  </nav>
+      <a href="index.html">Home</a>
+      <a href="despre.html">Despre Noi</a>
+      <span class="has-submenu">
+        <a href="audit.html">Audit Financiar</a>
+        <ul class="submenu">
+          <li><a href="audit.html"><span>Despre serviciu</span></a></li>
+          <li><a href="#"><span>Raport transparență 2020</span><span class="pdf-flag">PDF</span></a></li>
+          <li><a href="#"><span>Raport transparență 2021</span><span class="pdf-flag">PDF</span></a></li>
+          <li><a href="#"><span>Raport transparență 2022</span><span class="pdf-flag">PDF</span></a></li>
+          <li><a href="#"><span>Raport transparență 2023</span><span class="pdf-flag">PDF</span></a></li>
+          <li><a href="#"><span>Raport transparență 2024</span><span class="pdf-flag">PDF</span></a></li>
+          <li><a href="#"><span>Raport transparență 2025</span><span class="pdf-flag">PDF</span></a></li>
+        </ul>
+      </span>
+      <a href="insolventa.html">Insolvență</a>
+      <a href="expertiza.html" class="active">Expertiză Contabilă</a>
+      <a href="evaluari.html">Evaluări</a>
+      <a href="contact.html" class="nav-cta">Contact</a>
+    </nav>
 </div></header>
 
 <section class="page-head">
-  <div class="crumb"><a href="index.html">Bio Consult</a><span class="sep">/</span><a href="#">Servicii</a><span class="sep">/</span><span>Expertiză Contabilă</span></div>
+  <div class="crumb"><a href="index.html">Bio Consult</a><span class="sep">/</span><span>Expertiză Contabilă</span></div>
   <h1>Expertiză <em>contabilă</em>, judiciară și extrajudiciară.</h1>
-  <p class="lede">Rapoarte de expertiză întocmite de expert contabil membru C.E.C.C.A.R., depuse în dosare instanță, ANAF sau folosite ca probă în litigii comerciale.</p>
-  <div class="org-strip" style="margin-top:2rem;"><span class="badge">C.E.C.C.A.R.</span><span>Corpul Experților Contabili și Contabililor Autorizați din România</span></div>
+  <p class="lede">Lucrări de expertiză contabilă întocmite și semnate de expert contabil membru titular C.E.C.C.A.R., pentru instanță, parchet sau părți private.</p>
 </section>
 
-<section class="section">
-  <div class="two-col">
-    <div class="col-label">I — Despre serviciu</div>
-    <div class="col-body scroll-reveal">
-      <h2>O expertiză este un <em>răspuns</em> la o întrebare specifică.</h2>
-      <p class="dropcap">Expertiza contabilă este o lucrare de specialitate prin care expertul contabil răspunde unor obiective formulate de instanță, organele de cercetare, ANAF sau părți contractuale. Lucrarea analizează evidența contabilă, documentele primare, contractele și informațiile financiare ale entității, și concluzionează prin răspunsuri argumentate la fiecare obiectiv.</p>
-      <p>Cabinetul realizează atât expertize judiciare — desemnate de instanță — cât și expertize extrajudiciare, solicitate de părți pentru fundamentarea unei poziții într-un litigiu sau o decizie de afaceri. Fiecare raport este semnat personal și susținut de documentația completă a probelor analizate.</p>
-    </div>
-  </div>
-</section>
+<div class="page-photo scroll-reveal">
+  <div class="photo" style="background-image: url('https://picsum.photos/seed/expertiza-bio/1600/700?grayscale');"></div>
+</div>
 
-<section class="section">
-  <div class="two-col">
-    <div class="col-label">II — Tipuri de lucrări</div>
-    <div class="col-body">
-      <h2>Lucrări de expertiză <em>frecvente</em>.</h2>
-      <div class="svc-list">
-        <div class="svc-list-row scroll-reveal">
-          <span class="num">i.</span>
-          <span class="title">Expertiză contabilă judiciară</span>
-          <span class="desc">Lucrare desemnată de instanță în litigii civile, comerciale sau penale. Răspunde obiectivelor stabilite prin încheiere și se depune la dosarul cauzei.</span>
-        </div>
-        <div class="svc-list-row scroll-reveal">
-          <span class="num">ii.</span>
-          <span class="title">Expertiză contabilă extrajudiciară</span>
-          <span class="desc">Lucrare comandată de o parte — companie, asociat, persoană fizică — pentru fundamentarea unei poziții comerciale sau juridice.</span>
-        </div>
-        <div class="svc-list-row scroll-reveal">
-          <span class="num">iii.</span>
-          <span class="title">Expertize fiscale și verificarea creanțelor</span>
-          <span class="desc">Analiza obligațiilor fiscale, a creanțelor între părți, a contractelor de împrumut și a fluxurilor de numerar între entități afiliate.</span>
-        </div>
-        <div class="svc-list-row scroll-reveal">
-          <span class="num">iv.</span>
-          <span class="title">Expertize în litigii între asociați</span>
-          <span class="desc">Verificarea distribuirii profitului, a aporturilor, a operațiunilor cu părți afiliate și a corectitudinii situațiilor financiare anuale.</span>
-        </div>
-        <div class="svc-list-row scroll-reveal">
-          <span class="num">v.</span>
-          <span class="title">Consultanță contabilă și fiscală</span>
-          <span class="desc">Asistență pentru organizarea evidenței contabile, închiderea exercițiului, raportări fiscale și optimizarea politicilor contabile.</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<section class="page-content scroll-reveal">
+<span class="kicker">Servicii profesioniste de <em>expertiză contabilă</em></span>
 
-<section class="process">
-  <div class="process-inner">
-    <div class="process-head">
-      <div>
-        <div class="col-label" style="margin-bottom:1.5rem;">Metodologie</div>
-        <h2>Cum se construiește un <em>raport</em> de expertiză.</h2>
-      </div>
-      <p class="process-intro">Fiecare obiectiv primește un răspuns argumentat, susținut de documentele financiare verificate și păstrate în dosarul de lucru.</p>
-    </div>
-    <div class="steps">
-      <div class="step scroll-reveal"><span class="n">i — Obiective</span><h3>Definirea sferei</h3><p>Studiul încheierii instanței sau al solicitării părții. Identificarea documentelor relevante.</p></div>
-      <div class="step scroll-reveal"><span class="n">ii — Acces</span><h3>Strângerea probelor</h3><p>Solicitarea evidenței contabile, contractelor și a documentelor primare. Convocarea părților, dacă e cazul.</p></div>
-      <div class="step scroll-reveal"><span class="n">iii — Analiză</span><h3>Verificare și calcul</h3><p>Reconstituirea fluxurilor financiare, calculul sumelor, verificarea concordanțelor și aplicarea normelor.</p></div>
-      <div class="step scroll-reveal"><span class="n">iv — Raport</span><h3>Concluzii argumentate</h3><p>Răspuns la fiecare obiectiv, semnătură, depunerea raportului și, după caz, susținerea în instanță.</p></div>
-    </div>
-  </div>
-</section>
+<p>Cu peste două decenii de experiență în domeniul financiar, în calitate de expert contabil membru al Corpului Experților Contabili și Contabililor Autorizați din România (C.E.C.C.A.R.) și al Grupului Experților Judiciari, oferim servicii profesionale de expertiză contabilă, indiferent de domeniul de activitate al societății.</p>
 
-<section class="section">
-  <div class="two-col">
-    <div class="col-label">III — Cine semnează</div>
-    <div class="col-body">
-      <h2>Lucrările sunt întocmite <em>personal</em>.</h2>
-      <div class="partner-card scroll-reveal" style="margin-top:1.5rem;">
-        <div class="seal">L</div>
-        <div>
-          <div class="name">Oprea-Barac Luminița-Tatiana</div>
-          <div class="role">Expert Contabil — Partener</div>
-          <div class="creds">Expert contabil membru C.E.C.C.A.R. Auditor financiar membru C.A.F.R. Practician în insolvență, membru U.N.P.I.R.</div>
-          <div class="contact">
-            <span>T. <a href="tel:+40744335654">+40 744 335 654</a></span>
-            <span>E. <a href="mailto:oprea.luminita@yahoo.com">oprea.luminita@yahoo.com</a></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<p>În calitate de expert contabil, activitatea pe care o desfășurăm acoperă următoarele servicii:</p>
 
-<section class="cta-strip"><div class="cta-strip-inner">
-  <h3>Aveți o încheiere de instanță sau un litigiu în curs? Discutăm <em>obiectivele</em>.</h3>
-  <a href="contact.html" class="cta-btn">Programează o discuție →</a>
-</div></section>
+<ul class="bullets">
+  <li><strong>Consultanță financiară</strong> și fiscală pentru companii din diverse domenii.</li>
+  <li><strong>Expertize contabile extrajudiciare</strong>, în litigii comerciale și civile.</li>
+  <li><strong>Expert consilier</strong> conform art. 330 alin. (5) din Noul Cod de Procedură Civilă.</li>
+  <li><strong>Întocmire proiect</strong> de fuziune sau divizare a societăților comerciale.</li>
+  <li><strong>Întocmire plan</strong> de reorganizare judiciară.</li>
+</ul>
+
+<p class="closing">Lucrările sunt întocmite și semnate <em>personal</em> de expert contabil membru titular C.E.C.C.A.R.</p>
+</section>
 
 <footer class="footer"><div class="footer-inner">
   <div class="footer-top">
@@ -153,9 +81,22 @@
       <a href="index.html" class="logo"><span>Bio <span class="logo-mark">·</span> Consult</span></a>
       <p>Cabinet independent acreditat C.A.F.R., C.E.C.C.A.R, U.N.P.I.R și A.N.E.V.A.R, cu sediul în Pitești.</p>
     </div>
-    <div class="footer-col"><h4>Servicii</h4><ul><li><a href="audit.html">Audit Financiar</a></li><li><a href="insolventa.html">Insolvență</a></li><li><a href="expertiza.html">Expertiză Contabilă</a></li><li><a href="evaluari.html">Evaluări</a></li></ul></div>
-    <div class="footer-col"><h4>Cabinet</h4><ul><li><a href="despre.html">Despre noi</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-    <div class="footer-col"><h4>Acreditări</h4><ul><li>C.A.F.R.</li><li>C.E.C.C.A.R</li><li>U.N.P.I.R</li><li>A.N.E.V.A.R</li></ul></div>
+    <div class="footer-col"><h4>Servicii</h4><ul>
+      <li><a href="audit.html">Audit Financiar</a></li>
+      <li><a href="insolventa.html">Insolvență</a></li>
+      <li><a href="expertiza.html">Expertiză Contabilă</a></li>
+      <li><a href="evaluari.html">Evaluări</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Cabinet</h4><ul>
+      <li><a href="despre.html">Despre noi</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Acreditări</h4><ul>
+      <li><a href="#">C.A.F.R.</a></li>
+      <li><a href="#">C.E.C.C.A.R</a></li>
+      <li><a href="#">U.N.P.I.R</a></li>
+      <li><a href="#">A.N.E.V.A.R</a></li>
+    </ul></div>
   </div>
   <div class="footer-bottom">
     <p>© 2026 Bio Consult. Toate drepturile rezervate.</p>
@@ -164,7 +105,16 @@
 </div></footer>
 
 <script>
-const observer = new IntersectionObserver((entries) => { entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
 </script>
-</body></html>
+
+</body>
+</html>
