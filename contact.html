@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Bio Consult</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Hanken+Grotesk:wght@300..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="interior.css">
+<style>
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;
+}
+.contact-card {
+  background: var(--paper-soft); border: 1px solid var(--line);
+  padding: 2.5rem;
+}
+.contact-card .seal {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--ink); color: var(--accent-light);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-style: italic; font-size: 1.6rem;
+  font-variation-settings: "opsz" 80, "SOFT" 100; margin-bottom: 1.4rem;
+}
+.contact-card .name {
+  font-family: var(--serif); font-weight: 360; font-size: 1.4rem;
+  letter-spacing: -0.014em; margin-bottom: 0.3rem;
+  font-variation-settings: "opsz" 80, "SOFT" 40;
+}
+.contact-card .role {
+  font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent-deep); font-weight: 600; margin-bottom: 1.2rem;
+}
+.contact-card .creds {
+  font-size: 0.88rem; color: var(--ink-soft); line-height: 1.6;
+  padding-bottom: 1.4rem; border-bottom: 1px solid var(--line);
+  margin-bottom: 1.4rem;
+}
+.contact-line {
+  display: grid; grid-template-columns: 30px 1fr; gap: 1rem;
+  align-items: baseline; margin-bottom: 0.85rem; font-size: 0.95rem;
+}
+.contact-line .lbl {
+  font-size: 0.66rem; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--muted); font-weight: 600;
+}
+.contact-line a { color: var(--ink); text-decoration: none; transition: color .2s; }
+.contact-line a:hover { color: var(--accent-deep); }
+
+.office-block {
+  background: var(--ink); color: var(--paper);
+  padding: 4.5rem 0; margin-top: 4rem;
+}
+.office-inner {
+  max-width: var(--container); margin: 0 auto; padding: 0 var(--pad-x);
+  display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: start;
+}
+.office-inner .col-label { color: var(--accent-light); }
+.office-inner .col-label::before { background: var(--accent-light); }
+.office-inner h2 {
+  font-family: var(--serif); font-weight: 320;
+  font-size: clamp(1.8rem, 3.4vw, 2.8rem);
+  line-height: 1.05; letter-spacing: -0.022em;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  max-width: 22ch; text-wrap: pretty; margin-bottom: 1.4rem;
+}
+.office-inner h2 em { font-style: italic; color: var(--accent-light); font-variation-settings: "opsz" 144, "SOFT" 100; }
+.office-meta { color: rgba(244,239,230,0.72); line-height: 1.7; font-size: 1rem; max-width: 50ch; }
+.office-meta strong { color: var(--paper); font-weight: 500; }
+.office-list { list-style: none; display: flex; flex-direction: column; gap: 1.1rem; }
+.office-list li { padding: 1.1rem 0; border-top: 1px solid rgba(244,239,230,0.18); }
+.office-list .lbl {
+  font-size: 0.66rem; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--accent-light); font-weight: 600; margin-bottom: 0.4rem;
+}
+.office-list .v { font-size: 0.98rem; color: var(--paper); }
+.office-list .v.serif { font-family: var(--serif); font-style: italic; font-size: 1.1rem; font-variation-settings: "opsz" 80, "SOFT" 100; }
+
+@media (max-width: 980px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .office-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .contact-card { padding: 1.8rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-inner">
+  <div class="topbar-left"><span class="dot">●</span><span>Membri C.A.F.R · C.E.C.C.A.R · U.N.P.I.R · A.N.E.V.A.R</span></div>
+  <div class="topbar-right"><a href="tel:+40744335654">+40 744 335 654</a><a href="mailto:oprea.luminita@yahoo.com">oprea.luminita@yahoo.com</a><span class="lang">RO</span></div>
+</div></div>
+
+<header class="header"><div class="header-inner">
+  <a href="index.html" class="logo"><span>Bio <span class="logo-mark">·</span> Consult</span></a>
+  <nav class="nav">
+    <a href="despre.html">Despre Noi</a><a href="audit.html">Audit Financiar</a><a href="insolventa.html">Insolvență</a>
+    <a href="expertiza.html">Expertiză Contabilă</a><a href="evaluari.html">Evaluări</a>
+    <a href="contact.html" class="nav-cta active">Contact</a>
+  </nav>
+</div></header>
+
+<section class="page-head">
+  <div class="crumb"><a href="index.html">Bio Consult</a><span class="sep">/</span><span>Contact</span></div>
+  <h1>Discutăm <em>întâi</em>. Misiunea urmează după.</h1>
+  <p class="lede">Pentru misiuni de audit, expertiză, insolvență sau evaluări, primul pas este o discuție directă cu unul dintre partenerii cabinetului.</p>
+</section>
+
+<section class="section">
+  <div class="two-col">
+    <div class="col-label">I — Parteneri</div>
+    <div class="col-body">
+      <h2>Scrieți sau sunați <em>direct</em> partenerul potrivit.</h2>
+      <p>Pentru misiuni de audit financiar, expertiză contabilă sau insolvență, contactați-o pe Luminița. Pentru evaluări autorizate sau insolvență, contactați-l pe Ionel. Pentru orice altă întrebare, oricare dintre noi vă va răspunde.</p>
+      <div class="contact-grid">
+        <div class="contact-card scroll-reveal">
+          <div class="seal">L</div>
+          <div class="name">Oprea-Barac Luminița-Tatiana</div>
+          <div class="role">Audit · Expertiză · Insolvență</div>
+          <div class="creds">Auditor financiar — membru C.A.F.R. Expert contabil — membru C.E.C.C.A.R. Practician în insolvență — membru U.N.P.I.R.</div>
+          <div class="contact-line"><span class="lbl">T.</span><a href="tel:+40744335654">+40 744 335 654</a></div>
+          <div class="contact-line"><span class="lbl">E.</span><a href="mailto:oprea.luminita@yahoo.com">oprea.luminita@yahoo.com</a></div>
+        </div>
+        <div class="contact-card scroll-reveal">
+          <div class="seal">I</div>
+          <div class="name">Oprea-Barac Ionel</div>
+          <div class="role">Evaluări · Insolvență</div>
+          <div class="creds">Evaluator autorizat — membru titular A.N.E.V.A.R. Practician în insolvență — membru U.N.P.I.R.</div>
+          <div class="contact-line"><span class="lbl">T.</span><a href="tel:+40745017693">+40 745 017 693</a></div>
+          <div class="contact-line"><span class="lbl">E.</span><a href="mailto:oprea_barac@yahoo.com">oprea_barac@yahoo.com</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="office-block">
+  <div class="office-inner">
+    <div>
+      <div class="col-label" style="margin-bottom:1.5rem;">II — Cabinet</div>
+      <h2>Sediul cabinetului în <em>Pitești</em>.</h2>
+      <p class="office-meta">Întâlnirile la sediu se programează în prealabil. Pentru dosare cu volum mare de documente, vă rugăm să anunțați natura și obiectivele cu cel puțin 48 de ore înainte de întâlnire, pentru pregătirea sferei de lucru.</p>
+    </div>
+    <ul class="office-list">
+      <li><div class="lbl">Adresă</div><div class="v serif">Pitești, România</div></li>
+      <li><div class="lbl">Program</div><div class="v">Luni — Vineri · 09:00 — 17:00</div></li>
+      <li><div class="lbl">Întâlniri</div><div class="v">Doar cu programare prealabilă</div></li>
+      <li><div class="lbl">Confidențialitate</div><div class="v serif">Garantată profesional</div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="two-col">
+    <div class="col-label">III — Confidențialitate</div>
+    <div class="col-body scroll-reveal">
+      <h2>Ce ne <em>spuneți</em> rămâne între noi.</h2>
+      <p>Confidențialitatea informațiilor financiare este obligația profesională de bază a celor patru profesii sub care practicăm. Niciun aspect din misiune sau din discuțiile preliminare nu părăsește cabinetul fără mandat explicit din partea dumneavoastră.</p>
+      <p>Pentru documente sensibile, putem semna acord de confidențialitate înainte de prima întâlnire. Pentru consultări preliminare, este suficient un apel telefonic — fără angajament și fără facturare.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="footer-inner">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo"><span>Bio <span class="logo-mark">·</span> Consult</span></a>
+      <p>Cabinet independent acreditat C.A.F.R., C.E.C.C.A.R, U.N.P.I.R și A.N.E.V.A.R, cu sediul în Pitești.</p>
+    </div>
+    <div class="footer-col"><h4>Servicii</h4><ul><li><a href="audit.html">Audit Financiar</a></li><li><a href="insolventa.html">Insolvență</a></li><li><a href="expertiza.html">Expertiză Contabilă</a></li><li><a href="evaluari.html">Evaluări</a></li></ul></div>
+    <div class="footer-col"><h4>Cabinet</h4><ul><li><a href="despre.html">Despre noi</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Acreditări</h4><ul><li>C.A.F.R.</li><li>C.E.C.C.A.R</li><li>U.N.P.I.R</li><li>A.N.E.V.A.R</li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Bio Consult. Toate drepturile rezervate.</p>
+    <p class="footer-meta">Pitești, România</p>
+  </div>
+</div></footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => { entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
+</script>
+</body></html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Despre Noi — Bio Consult</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Hanken+Grotesk:wght@300..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="interior.css">
+<style>
+.about-figure { aspect-ratio: 4/5; position: relative; overflow: hidden; }
+.about-figure .tag {
+  position: absolute; top: 1.6rem; left: 1.6rem;
+  font-size: 0.62rem; letter-spacing: 0.26em; text-transform: uppercase;
+  color: rgba(244,239,230,0.7); font-weight: 500;
+}
+.about-figure .stamp {
+  position: absolute; bottom: 1.6rem; right: 1.8rem;
+  font-family: var(--serif); font-style: italic; font-weight: 280;
+  font-size: 6rem; color: var(--accent-light); opacity: 0.55; line-height: 1;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+.values {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  margin-top: 2rem;
+}
+.value {
+  padding: 2rem 1.6rem 0 0;
+  border-top: 1px solid var(--line);
+}
+.value .n {
+  font-family: var(--serif); font-style: italic; color: var(--accent-deep);
+  font-size: 1.05rem; margin-bottom: 1rem; display: block;
+  font-variation-settings: "opsz" 80, "SOFT" 100;
+}
+.value h3 {
+  font-family: var(--serif); font-weight: 360; font-size: 1.25rem;
+  line-height: 1.2; margin-bottom: 0.7rem; letter-spacing: -0.012em;
+  font-variation-settings: "opsz" 80, "SOFT" 40;
+}
+.value p { color: var(--ink-soft); font-size: 0.92rem; line-height: 1.65; }
+@media (max-width: 980px) { .values { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left"><span class="dot">●</span><span>Membri C.A.F.R · C.E.C.C.A.R · U.N.P.I.R · A.N.E.V.A.R</span></div>
+    <div class="topbar-right">
+      <a href="tel:+40744335654">+40 744 335 654</a>
+      <a href="mailto:oprea.luminita@yahoo.com">oprea.luminita@yahoo.com</a>
+      <span class="lang">RO</span>
+    </div>
+  </div>
+</div>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <span>Bio <span class="logo-mark">·</span> Consult</span>
+    </a>
+    <nav class="nav">
+      <a href="despre.html" class="active">Despre Noi</a>
+      <a href="audit.html">Audit Financiar</a>
+      <a href="insolventa.html">Insolvență</a>
+      <a href="expertiza.html">Expertiză Contabilă</a>
+      <a href="evaluari.html">Evaluări</a>
+      <a href="contact.html" class="nav-cta">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-head">
+  <div class="crumb"><a href="index.html">Bio Consult</a><span class="sep">/</span><span>Despre Noi</span></div>
+  <h1>Un cabinet construit pe <em>discreție</em> și o singură semnătură.</h1>
+  <p class="lede">De peste două decenii, partenerul discret al companiilor românești în audit financiar, expertiză contabilă, evaluări autorizate și proceduri de insolvență.</p>
+</section>
+
+<section class="section">
+  <div class="two-col">
+    <div class="about-figure marble scroll-reveal">
+      <span class="tag">— Cabinet · Est. 2003</span>
+      <span class="stamp">B·C</span>
+    </div>
+    <div class="col-body scroll-reveal">
+      <p class="dropcap">Bio Consult este un cabinet independent fondat în 2003 la Pitești, specializat în audit financiar, expertiză contabilă, evaluări autorizate și asistență în proceduri de insolvență. Practicăm la intersecția a patru profesii reglementate, cu mandate care acoperă întreg ciclul financiar al unei companii — de la verificarea situațiilor anuale și expertize judiciare la evaluări autorizate ANEVAR și administrarea procedurilor de insolvență.</p>
+      <p>Spre deosebire de structurile mari, cabinetul rămâne o practică condusă personal de cei doi parteneri fondatori. Dosarele pe care le semnăm trec prin mâinile noastre — nu prin filtre intermediare. Aceasta este promisiunea pe care o păstrăm consecvent: fiecare misiune primește atenția unui dosar judiciar, documentat și datat.</p>
+      <p>Acreditările profesionale sunt verificate și păstrate active prin formare continuă, conform reglementărilor C.A.F.R., C.E.C.C.A.R., U.N.P.I.R. și A.N.E.V.A.R.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="two-col">
+    <div class="col-label">II — Principii</div>
+    <div class="col-body">
+      <h2>Trei principii care țin cabinetul în <em>echilibru</em>.</h2>
+      <p>Independența nu se declară — se demonstrează în fiecare misiune semnată. Iată cele trei principii sub care lucrăm.</p>
+      <div class="values">
+        <div class="value scroll-reveal">
+          <span class="n">i.</span>
+          <h3>Independență</h3>
+          <p>Fiecare mandat este evaluat pentru conflicte de interese înainte de a fi acceptat. Refuzăm misiuni care ar compromite imparțialitatea raportării.</p>
+        </div>
+        <div class="value scroll-reveal">
+          <span class="n">ii.</span>
+          <h3>Documentare</h3>
+          <p>Fiecare opinie este susținută de documentația de lucru completă, păstrată în arhivă conform standardelor profesionale și disponibilă pentru revizuire.</p>
+        </div>
+        <div class="value scroll-reveal">
+          <span class="n">iii.</span>
+          <h3>Discreție</h3>
+          <p>Confidențialitatea informațiilor financiare este obligația noastră de bază. Niciun aspect din misiune nu părăsește cabinetul fără mandat explicit.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="pull-quote">
+  <blockquote>Independența nu se declară. Se demonstrează în fiecare misiune semnată.</blockquote>
+  <cite>— Principiul cabinetului, păstrat din 2003</cite>
+</div>
+
+<section class="cta-strip">
+  <div class="cta-strip-inner">
+    <h3>Discutăm <em>întâi</em>. Misiunea urmează.</h3>
+    <a href="contact.html" class="cta-btn">Programează o discuție →</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><span>Bio <span class="logo-mark">·</span> Consult</span></a>
+        <p>Cabinet independent acreditat C.A.F.R., C.E.C.C.A.R, U.N.P.I.R și A.N.E.V.A.R, cu sediul în Pitești.</p>
+      </div>
+      <div class="footer-col"><h4>Servicii</h4><ul>
+        <li><a href="audit.html">Audit Financiar</a></li>
+        <li><a href="insolventa.html">Insolvență</a></li>
+        <li><a href="expertiza.html">Expertiză Contabilă</a></li>
+        <li><a href="evaluari.html">Evaluări</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Cabinet</h4><ul>
+        <li><a href="despre.html">Despre noi</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Acreditări</h4><ul>
+        <li>C.A.F.R.</li><li>C.E.C.C.A.R</li><li>U.N.P.I.R</li><li>A.N.E.V.A.R</li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Bio Consult. Toate drepturile rezervate.</p>
+      <p class="footer-meta">Pitești, România</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
+</script>
+</body>
+</html>

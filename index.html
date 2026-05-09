@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bio Consult — Audit Financiar, Expertiză Contabilă, Insolvență, Evaluări</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Hanken+Grotesk:wght@300..800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0A1628;
+  --ink-soft: #1B2A40;
+  --ink-mute: #3a4759;
+  --paper: #F4EFE6;
+  --paper-soft: #EDE6D8;
+  --paper-deep: #E2D9C6;
+  --accent: #A88747;
+  --accent-deep: #8C6E36;
+  --accent-light: #C4A66B;
+  --muted: #5C6B7A;
+  --line: rgba(10, 22, 40, 0.12);
+  --line-soft: rgba(10, 22, 40, 0.07);
+  --serif: 'Fraunces', 'Times New Roman', serif;
+  --sans: 'Hanken Grotesk', -apple-system, system-ui, sans-serif;
+  --container: 1280px;
+  --pad-x: 2rem;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Paper noise */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 1;
+  opacity: 0.45;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.04, 0 0 0 0 0.09, 0 0 0 0 0.16, 0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  mix-blend-mode: multiply;
+}
+
+/* Marble background — used in panels */
+.marble {
+  background:
+    radial-gradient(ellipse 60% 50% at 30% 35%, rgba(255,255,255,0.18), transparent 60%),
+    radial-gradient(ellipse 70% 60% at 80% 70%, rgba(168,135,71,0.22), transparent 60%),
+    radial-gradient(circle at 20% 80%, rgba(244,239,230,0.08), transparent 50%),
+    linear-gradient(135deg, var(--ink) 0%, var(--ink-soft) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.marble::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='m'><feTurbulence type='turbulence' baseFrequency='0.012' numOctaves='3' seed='5'/><feColorMatrix values='0 0 0 0 0.95, 0 0 0 0 0.93, 0 0 0 0 0.88, 0 0 0 0.5 0'/><feComposite in2='SourceGraphic' operator='in'/></filter><rect width='100%25' height='100%25' filter='url(%23m)' opacity='0.3'/></svg>");
+  mix-blend-mode: screen;
+  opacity: 0.35;
+}
+.marble::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='800'><filter id='v'><feTurbulence baseFrequency='0.004' numOctaves='5' seed='2'/><feDisplacementMap in='SourceGraphic' scale='40'/></filter><g filter='url(%23v)'><path d='M0,200 Q200,100 400,250 T800,300' stroke='rgba(244,239,230,0.18)' stroke-width='1' fill='none'/><path d='M0,500 Q300,400 500,550 T800,600' stroke='rgba(244,239,230,0.12)' stroke-width='1' fill='none'/><path d='M100,0 Q300,300 200,600 T400,800' stroke='rgba(196,166,107,0.15)' stroke-width='1' fill='none'/></g></svg>");
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+}
+
+/* Topbar */
+.topbar {
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  position: relative; z-index: 10;
+}
+.topbar-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0.7rem var(--pad-x);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+.topbar-left { display: flex; gap: 0.6rem; align-items: center; opacity: 0.85; }
+.topbar-left .dot { color: var(--accent-light); }
+.topbar a { color: inherit; text-decoration: none; opacity: 0.85; transition: opacity .2s, color .2s; }
+.topbar a:hover { opacity: 1; color: var(--accent-light); }
+.topbar-right { display: flex; gap: 1.6rem; align-items: center; }
+.topbar .lang {
+  color: var(--accent-light);
+  border: 1px solid rgba(196,166,107,0.4);
+  padding: 0.18rem 0.55rem;
+  letter-spacing: 0.18em;
+  font-size: 0.66rem;
+}
+
+/* Header */
+.header {
+  position: sticky; top: 0; z-index: 100;
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: rgba(244, 239, 230, 0.9);
+}
+.header-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 1.4rem var(--pad-x);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.55rem;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-decoration: none;
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  font-variation-settings: "opsz" 80, "SOFT" 30;
+}
+.logo-mark {
+  font-style: italic;
+  color: var(--accent-deep);
+  font-variation-settings: "opsz" 80, "SOFT" 100;
+}
+.logo-sub {
+  font-family: var(--sans);
+  font-size: 0.64rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+.nav { display: flex; gap: 1.8rem; align-items: center; }
+.nav a {
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.84rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  position: relative;
+  padding: 0.3rem 0;
+  transition: color .2s;
+}
+.nav a:not(.nav-cta)::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 1px;
+  background: var(--accent);
+  transition: width .35s ease;
+}
+.nav a:not(.nav-cta):hover::after { width: 100%; }
+.nav a:hover { color: var(--accent-deep); }
+.nav-cta {
+  background: var(--ink);
+  color: var(--paper) !important;
+  padding: 0.7rem 1.4rem !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase;
+  font-size: 0.72rem !important;
+  transition: background .25s;
+}
+.nav-cta:hover { background: var(--accent-deep); color: var(--paper) !important; }
+
+/* Hero */
+.hero {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 5rem var(--pad-x) 2rem;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 4rem;
+  align-items: end;
+  position: relative;
+}
+.hero-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-weight: 500;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 36px; height: 1px;
+  background: var(--accent);
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 320;
+  font-size: clamp(2.6rem, 6.4vw, 5.8rem);
+  line-height: 0.98;
+  letter-spacing: -0.032em;
+  color: var(--ink);
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+  text-wrap: pretty;
+}
+.hero h1 em {
+  font-style: italic;
+  font-weight: 320;
+  color: var(--accent-deep);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+.hero-side { padding-bottom: 0.4rem; }
+.hero-side p {
+  font-size: 1.02rem;
+  color: var(--ink-soft);
+  max-width: 32ch;
+  margin-bottom: 2rem;
+  line-height: 1.65;
+}
+.hero-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  padding-top: 1.4rem;
+}
+.hero-meta strong {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink);
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 1.05rem;
+  font-variation-settings: "opsz" 80, "SOFT" 100;
+}
+
+/* Marquee credentials */
+.marquee {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--paper-soft);
+  overflow: hidden;
+  margin: 4rem 0 0;
+}
+.marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: scroll 38s linear infinite;
+  padding: 1.6rem 0;
+}
+.marquee-track > span {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 350;
+  font-size: 1.6rem;
+  letter-spacing: -0.005em;
+  color: var(--ink-soft);
+  padding: 0 2.4rem;
+  font-variation-settings: "opsz" 80, "SOFT" 100;
+  flex-shrink: 0;
+}
+.marquee-track > span.bullet {
+  color: var(--accent);
+  font-style: normal;
+  font-size: 0.9rem;
+  align-self: center;
+  padding: 0 0.6rem;
+}
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Section labels */
+.section-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.6rem;
+  font-weight: 500;
+}
+.section-label::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--accent);
+}
+
+/* About */
+.about {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 8rem var(--pad-x) 7rem;
+  display: grid;
+  grid-template-columns: 0.85fr 1.4fr;
+  gap: 5rem;
+  align-items: start;
+}
+.about-visual {
+  aspect-ratio: 3/4;
+  position: relative;
+  overflow: hidden;
+}
+.about-visual .marble-tag {
+  position: absolute;
+  top: 1.8rem;
+  left: 1.8rem;
+  font-family: var(--sans);
+  font-size: 0.66rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(244,239,230,0.7);
+  font-weight: 500;
+}
+.about-visual .quote {
+  position: absolute;
+  inset: auto 1.8rem 1.8rem 1.8rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 320;
+  font-size: 1.4rem;
+  line-height: 1.35;
+  color: rgba(244,239,230,0.95);
+  font-variation-settings: "opsz" 80, "SOFT" 100;
+  text-wrap: balance;
+}
+.about-visual .quote::before {
+  content: '“';
+  display: block;
+  font-size: 4rem;
+  line-height: 0.6;
+  margin-bottom: 0.6rem;
+  color: var(--accent-light);
+  opacity: 0.7;
+}
+
+.about-content h2 {
+  font-family: var(--serif);
+  font-weight: 320;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  margin-bottom: 2rem;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  max-width: 18ch;
+  text-wrap: pretty;
+}
+.about-content h2 em {
+  font-style: italic;
+  color: var(--accent-deep);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+.about-content p {
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+  margin-bottom: 1.2rem;
+  line-height: 1.7;
+  max-width: 50ch;
+}
+.about-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  margin-top: 1.6rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--ink);
+  transition: gap .25s, color .25s, border-color .25s;
+  font-weight: 500;
+}
+.about-cta:hover { gap: 1.2rem; color: var(--accent-deep); border-color: var(--accent-deep); }
+
+/* Services index — editorial list */
+.services {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 7rem 0 0;
+}
+.services-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+}
+.services-head {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 4rem;
+  align-items: end;
+  margin-bottom: 4rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(244, 239, 230, 0.18);
+}
+.services .section-label { color: var(--accent-light); }
+.services .section-label::before { background: var(--accent-light); }
+.services h2 {
+  font-family: var(--serif);
+  font-weight: 320;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.04;
+  letter-spacing: -0.024em;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  text-wrap: pretty;
+}
+.services h2 em {
+  font-style: italic;
+  color: var(--accent-light);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+.services-intro {
+  color: rgba(244, 239, 230, 0.7);
+  font-size: 1rem;
+  max-width: 38ch;
+  align-self: end;
+  padding-bottom: 0.4rem;
+  line-height: 1.7;
+}
+
+.service-list { display: flex; flex-direction: column; padding-bottom: 6rem; }
+.service-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 1.5fr 200px;
+  gap: 2rem;
+  padding: 2.4rem 0;
+  border-top: 1px solid rgba(244, 239, 230, 0.18);
+  align-items: baseline;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  transition: padding .35s ease;
+}
+.service-row:last-child { border-bottom: 1px solid rgba(244, 239, 230, 0.18); }
+.service-row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(168,135,71,0.06) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity .35s ease;
+  pointer-events: none;
+}
+.service-row:hover::before { opacity: 1; }
+.service-row:hover { padding-left: 1.4rem; }
+.service-row .num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.3rem;
+  color: var(--accent-light);
+  font-variation-settings: "opsz" 80, "SOFT" 100;
+}
+.service-row .title {
+  font-family: var(--serif);
+  font-weight: 320;
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.018em;
+  font-variation-settings: "opsz" 144, "SOFT" 40;
+  text-wrap: pretty;
+}
+.service-row .title em {
+  font-style: italic;
+  color: var(--accent-light);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+.service-row .desc {
+  color: rgba(244, 239, 230, 0.7);
+  font-size: 0.96rem;
+  line-height: 1.65;
+  max-width: 42ch;
+}
+.service-row .arrow {
+  font-size: 0.74rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  text-align: right;
+  font-weight: 500;
+  display: inline-flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.6rem;
+  transition: gap .25s;
+}
+.service-row:hover .arrow { gap: 1rem; }
+
+/* Partners */
+.partners {
+  background: var(--paper);
+  padding: 7rem 0;
+  border-top: 1px solid var(--line);
+}
+.partners-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+}
+.partners-head {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: end;
+  margin-bottom: 4rem;
+}
+.partners-head h2 {
+  font-family: var(--serif);
+  font-weight: 320;
+  font-size: clamp(2rem, 3.4vw, 2.8rem);
+  line-height: 1.06;
+  letter-spacing: -0.022em;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  text-wrap: pretty;
+}
+.partners-head h2 em {
+  font-style: italic;
+  color: var(--accent-deep);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+.partners-head p {
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.65;
+  max-width: 42ch;
+  padding-bottom: 0.4rem;
+}
+
+.partner-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+.partner-card {
+  display: grid;
+  grid-template-columns: 0.7fr 1fr;
+  gap: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+.partner-portrait {
+  aspect-ratio: 3/4;
+  position: relative;
+  overflow: hidden;
+}
+.partner-portrait .label {
+  position: absolute;
+  top: 1rem; left: 1rem;
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(244,239,230,0.6);
+  font-weight: 500;
+}
+.partner-portrait .initials {
+  position: absolute;
+  bottom: 1rem; right: 1.2rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 4.5rem;
+  color: var(--accent-light);
+  opacity: 0.55;
+  line-height: 1;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+.partner-info h3 {
+  font-family: var(--serif);
+  font-weight: 350;
+  font-size: 1.55rem;
+  line-height: 1.1;
+  letter-spacing: -0.012em;
+  margin-bottom: 0.5rem;
+  font-variation-settings: "opsz" 80, "SOFT" 40;
+  text-wrap: pretty;
+}
+.partner-info .role {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--accent-deep);
+  font-size: 0.98rem;
+  margin-bottom: 1.5rem;
+  font-variation-settings: "opsz" 80, "SOFT" 100;
+}
+.partner-info ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.partner-info li {
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 0.8rem;
+  align-items: baseline;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed var(--line);
+}
+.partner-info li::before {
+  content: attr(data-org);
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  font-weight: 600;
+}
+.partner-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.partner-contacts a {
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.92rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: color .2s;
+}
+.partner-contacts a:hover { color: var(--accent-deep); }
+.partner-contacts a span {
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  width: 30px;
+}
+
+/* Stats */
+.stats {
+  background: var(--paper-soft);
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+.stats-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.stat {
+  padding: 4rem 2rem;
+  border-right: 1px solid var(--line);
+  position: relative;
+}
+.stat:last-child { border-right: none; }
+.stat-num {
+  font-family: var(--serif);
+  font-weight: 320;
+  font-size: clamp(2.8rem, 4.2vw, 4.4rem);
+  line-height: 1;
+  color: var(--ink);
+  letter-spacing: -0.04em;
+  margin-bottom: 0.7rem;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+}
+.stat-num em {
+  font-style: italic;
+  color: var(--accent-deep);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+.stat-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* Contact */
+.contact {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 7rem 0;
+  position: relative;
+  overflow: hidden;
+}
+.contact::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 60% at 90% 10%, rgba(168,135,71,0.18), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 10% 90%, rgba(168,135,71,0.10), transparent 60%);
+  pointer-events: none;
+}
+.contact-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+.contact .section-label { color: var(--accent-light); }
+.contact .section-label::before { background: var(--accent-light); }
+.contact h2 {
+  font-family: var(--serif);
+  font-weight: 320;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: 1.02;
+  letter-spacing: -0.028em;
+  margin-bottom: 1.5rem;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  text-wrap: pretty;
+}
+.contact h2 em {
+  font-style: italic;
+  color: var(--accent-light);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+.contact-lead {
+  color: rgba(244, 239, 230, 0.72);
+  font-size: 1.05rem;
+  max-width: 36ch;
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+.contact-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: var(--accent);
+  color: var(--ink);
+  padding: 1.15rem 2.2rem;
+  text-decoration: none;
+  font-size: 0.74rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: background .25s, gap .25s;
+}
+.contact-cta:hover { background: var(--paper); gap: 1.3rem; }
+
+.contact-details { display: flex; flex-direction: column; gap: 1.6rem; }
+.contact-item {
+  border-top: 1px solid rgba(244, 239, 230, 0.18);
+  padding-top: 1.4rem;
+}
+.contact-item-label {
+  font-size: 0.66rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: 0.7rem;
+  font-weight: 500;
+}
+.contact-item-value {
+  font-family: var(--serif);
+  font-weight: 350;
+  font-size: 1.4rem;
+  letter-spacing: -0.012em;
+  color: var(--paper);
+  text-decoration: none;
+  display: inline-block;
+  line-height: 1.3;
+  font-variation-settings: "opsz" 80, "SOFT" 30;
+}
+a.contact-item-value { transition: color .2s; }
+a.contact-item-value:hover { color: var(--accent-light); }
+
+/* Footer */
+.footer {
+  background: var(--ink-soft);
+  color: var(--paper);
+  padding: 4.5rem 0 2rem;
+}
+.footer-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(244, 239, 230, 0.12);
+}
+.footer-brand .logo { color: var(--paper); font-size: 1.35rem; }
+.footer-brand .logo-mark { color: var(--accent-light); }
+.footer-brand .logo-sub { color: rgba(244,239,230,0.5); display: block; margin-top: 0.4rem; }
+.footer-brand p {
+  color: rgba(244, 239, 230, 0.6);
+  font-size: 0.88rem;
+  max-width: 32ch;
+  margin-top: 1.2rem;
+  line-height: 1.65;
+}
+.footer-col h4 {
+  font-weight: 600;
+  font-size: 0.66rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: 1.4rem;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+.footer-col a {
+  color: rgba(244, 239, 230, 0.75);
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: color .2s;
+}
+.footer-col a:hover { color: var(--accent-light); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.footer-bottom p {
+  font-size: 0.76rem;
+  color: rgba(244, 239, 230, 0.5);
+  letter-spacing: 0.06em;
+}
+.footer-bottom .footer-meta {
+  font-family: var(--serif);
+  font-style: italic;
+  color: rgba(244, 239, 230, 0.7);
+  font-size: 0.95rem;
+  font-variation-settings: "opsz" 80, "SOFT" 100;
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal { opacity: 0; animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+.delay-1 { animation-delay: 0.15s; }
+.delay-2 { animation-delay: 0.3s; }
+.delay-3 { animation-delay: 0.5s; }
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .9s cubic-bezier(0.2, 0.8, 0.2, 1), transform .9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.scroll-reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Responsive */
+@media (max-width: 980px) {
+  .topbar-inner { padding: 0.6rem 1.2rem; flex-wrap: wrap; gap: 0.5rem 1.2rem; }
+  .header-inner { padding: 1.1rem 1.2rem; }
+  .logo-sub { display: none; }
+  .nav { gap: 0.8rem; }
+  .nav a:not(.nav-cta) { display: none; }
+  .hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 1.2rem 2rem; align-items: start; }
+  .marquee-track > span { font-size: 1.15rem; padding: 0 1.4rem; }
+  .about { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.2rem; }
+  .about-visual { aspect-ratio: 4/5; max-height: 360px; }
+  .services-inner, .partners-inner, .stats-inner, .contact-inner, .footer-inner {
+    padding-left: 1.2rem; padding-right: 1.2rem;
+  }
+  .services-head, .partners-head { grid-template-columns: 1fr; gap: 2rem; }
+  .service-row { grid-template-columns: 50px 1fr; gap: 1rem; padding: 2rem 0; }
+  .service-row .desc, .service-row .arrow { grid-column: 2; }
+  .stats-inner { grid-template-columns: 1fr 1fr; }
+  .stat { padding: 2.5rem 1.2rem; }
+  .stat:nth-child(2) { border-right: none; }
+  .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid var(--line); }
+  .partner-grid { grid-template-columns: 1fr; }
+  .partner-card { grid-template-columns: 1fr; gap: 1.5rem; }
+  .partner-portrait { aspect-ratio: 4/3; }
+  .contact { padding: 5rem 0; }
+  .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .footer-brand { grid-column: 1 / -1; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <span class="dot">●</span>
+      <span>Membri C.A.F.R. · C.E.C.C.A.R · U.N.P.I.R · A.N.E.V.A.R</span>
+    </div>
+    <div class="topbar-right">
+      <a href="tel:+40744335654">+40 744 335 654</a>
+      <a href="mailto:oprea.luminita@yahoo.com">oprea.luminita@yahoo.com</a>
+      <span class="lang">RO</span>
+    </div>
+  </div>
+</div>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <span>Bio <span class="logo-mark">·</span> Consult</span>
+    </a>
+    <nav class="nav">
+      <a href="despre.html">Despre Noi</a>
+      <a href="audit.html">Audit Financiar</a>
+      <a href="insolventa.html">Insolvență</a>
+      <a href="expertiza.html">Expertiză Contabilă</a>
+      <a href="evaluari.html">Evaluări</a>
+      <a href="contact.html" class="nav-cta">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow reveal delay-1">Cabinet de audit financiar — Activ din 2003</div>
+    <h1 class="reveal delay-2">Rigoare, claritate și <em>încredere</em> în fiecare cifră raportată.</h1>
+  </div>
+  <div class="hero-side reveal delay-3">
+    <p>Cabinet independent specializat în audit financiar, expertiză contabilă judiciară, evaluări autorizate și asistență în proceduri de insolvență.</p>
+    <div class="hero-meta">
+      <span>Sediu</span>
+      <strong>Pitești, România</strong>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="about" id="despre">
+  <div class="about-visual marble scroll-reveal">
+    <span class="marble-tag">— Despre cabinet</span>
+    <p class="quote">Independența nu se declară. Se demonstrează în fiecare misiune semnată.</p>
+  </div>
+  <div class="about-content scroll-reveal">
+    <div class="section-label">I — Cabinet</div>
+    <h2>Două decenii de practică, sub <em>o singură semnătură</em>.</h2>
+    <p>Bio Consult este un cabinet independent specializat în audit financiar, expertiză contabilă, evaluări autorizate și asistență în proceduri de insolvență. Practicăm la intersecția a patru profesii reglementate, cu mandate care acoperă întreg ciclul financiar al unei companii.</p>
+    <p>Dosarele pe care le semnăm trec prin mâinile partenerilor — nu prin filtre intermediare. Aceasta este promisiunea noastră, păstrată consecvent timp de două decenii.</p>
+    <a href="despre.html" class="about-cta">Despre cabinet →</a>
+  </div>
+</section>
+
+<section class="services" id="servicii">
+  <div class="services-inner">
+    <div class="services-head scroll-reveal">
+      <div>
+        <div class="section-label">II — Servicii</div>
+        <h2>Patru discipline reglementate. <em>Un singur</em> standard.</h2>
+      </div>
+      <p class="services-intro">Misiunile noastre acoperă întregul ciclu financiar al unei companii — de la auditul situațiilor anuale la evaluările autorizate și procedurile de insolvență.</p>
+    </div>
+
+    <div class="service-list">
+      <a href="audit.html" class="service-row scroll-reveal">
+        <span class="num">i.</span>
+        <span class="title">Audit <em>Financiar</em></span>
+        <span class="desc">Audit statutar și voluntar al situațiilor financiare, conform Standardelor Internaționale de Audit (ISA). Atestare CAFR.</span>
+        <span class="arrow">Vezi mai mult →</span>
+      </a>
+      <a href="expertiza.html" class="service-row scroll-reveal">
+        <span class="num">ii.</span>
+        <span class="title">Expertiză <em>Contabilă</em></span>
+        <span class="desc">Expertize contabile judiciare și extrajudiciare, consultanță și asistență în litigii comerciale. Atestare CECCAR.</span>
+        <span class="arrow">Vezi mai mult →</span>
+      </a>
+      <a href="insolventa.html" class="service-row scroll-reveal">
+        <span class="num">iii.</span>
+        <span class="title"><em>Insolvență</em></span>
+        <span class="desc">Reorganizare, lichidare judiciară și mediere a creanțelor, cu respectarea echilibrată a drepturilor părților. Atestare UNPIR.</span>
+        <span class="arrow">Vezi mai mult →</span>
+      </a>
+      <a href="evaluari.html" class="service-row scroll-reveal">
+        <span class="num">iv.</span>
+        <span class="title">Evaluări <em>Autorizate</em></span>
+        <span class="desc">Evaluări de bunuri imobile, întreprinderi, bunuri mobile și instrumente financiare, cu rapoarte fundamentate. Atestare ANEVAR.</span>
+        <span class="arrow">Vezi mai mult →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="partners" id="parteneri">
+  <div class="partners-inner">
+    <div class="partners-head scroll-reveal">
+      <div>
+        <div class="section-label">III — Parteneri</div>
+        <h2>Doi parteneri, <em>patru</em> calificări reglementate.</h2>
+      </div>
+      <p>Cabinetul este condus de doi parteneri care semnează personal fiecare misiune. Calificările profesionale sunt verificate și păstrate active prin formare continuă, conform reglementărilor naționale.</p>
+    </div>
+
+    <div class="partner-grid">
+      <article class="partner-card scroll-reveal">
+        <div class="partner-portrait marble">
+          <span class="label">Partener 01</span>
+          <span class="initials">L.O.</span>
+        </div>
+        <div class="partner-info">
+          <h3>Oprea-Barac Luminița-Tatiana</h3>
+          <p class="role">Auditor financiar · Partener fondator</p>
+          <ul>
+            <li data-org="CAFR">Auditor financiar — membru titular</li>
+            <li data-org="CECCAR">Expert contabil — membru titular</li>
+            <li data-org="UNPIR">Practician în insolvență — membru titular</li>
+          </ul>
+          <div class="partner-contacts">
+            <a href="tel:+40744335654"><span>Tel</span>+40 744 335 654</a>
+            <a href="mailto:oprea.luminita@yahoo.com"><span>Email</span>oprea.luminita@yahoo.com</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="partner-card scroll-reveal">
+        <div class="partner-portrait marble">
+          <span class="label">Partener 02</span>
+          <span class="initials">I.O.</span>
+        </div>
+        <div class="partner-info">
+          <h3>Oprea-Barac Ionel</h3>
+          <p class="role">Evaluator autorizat · Partener fondator</p>
+          <ul>
+            <li data-org="ANEVAR">Evaluator autorizat — membru titular</li>
+            <li data-org="UNPIR">Practician în insolvență — membru titular</li>
+          </ul>
+          <div class="partner-contacts">
+            <a href="tel:+40745017693"><span>Tel</span>+40 745 017 693</a>
+            <a href="mailto:oprea_barac@yahoo.com"><span>Email</span>oprea_barac@yahoo.com</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stats-inner">
+    <div class="stat scroll-reveal">
+      <div class="stat-num">22<em>+</em></div>
+      <div class="stat-label">ani de practică</div>
+    </div>
+    <div class="stat scroll-reveal">
+      <div class="stat-num">4<em>·</em></div>
+      <div class="stat-label">profesii reglementate</div>
+    </div>
+    <div class="stat scroll-reveal">
+      <div class="stat-num">160<em>+</em></div>
+      <div class="stat-label">clienți activi</div>
+    </div>
+    <div class="stat scroll-reveal">
+      <div class="stat-num">540<em>+</em></div>
+      <div class="stat-label">misiuni semnate</div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="scroll-reveal">
+      <div class="section-label">IV — Contact</div>
+      <h2>Discutăm <em>întâi</em>.<br>Misiunea urmează.</h2>
+      <p class="contact-lead">Fiecare colaborare începe cu o discuție onestă despre scopul misiunii și așteptările reciproce — fără promisiuni grăbite.</p>
+      <a href="mailto:oprea.luminita@yahoo.com" class="contact-cta">Programează o discuție →</a>
+    </div>
+    <div class="contact-details scroll-reveal">
+      <div class="contact-item">
+        <div class="contact-item-label">Auditor · Partener I</div>
+        <a href="tel:+40744335654" class="contact-item-value">+40 744 335 654</a><br>
+        <a href="mailto:oprea.luminita@yahoo.com" class="contact-item-value" style="font-size:1.05rem;">oprea.luminita@yahoo.com</a>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Evaluator · Partener II</div>
+        <a href="tel:+40745017693" class="contact-item-value">+40 745 017 693</a><br>
+        <a href="mailto:oprea_barac@yahoo.com" class="contact-item-value" style="font-size:1.05rem;">oprea_barac@yahoo.com</a>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Sediu</div>
+        <span class="contact-item-value">Pitești, România</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <span>Bio <span class="logo-mark">·</span> Consult</span>
+        </a>
+        <p>Cabinet independent acreditat C.A.F.R., C.E.C.C.A.R, U.N.P.I.R și A.N.E.V.A.R, cu sediul în Pitești.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Servicii</h4>
+        <ul>
+          <li><a href="audit.html">Audit Financiar</a></li>
+          <li><a href="insolventa.html">Insolvență</a></li>
+          <li><a href="expertiza.html">Expertiză Contabilă</a></li>
+          <li><a href="evaluari.html">Evaluări</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Cabinet</h4>
+        <ul>
+          <li><a href="despre.html">Despre noi</a></li>
+          <li><a href="#parteneri">Parteneri</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Acreditări</h4>
+        <ul>
+          <li><a href="#">C.A.F.R.</a></li>
+          <li><a href="#">C.E.C.C.A.R</a></li>
+          <li><a href="#">U.N.P.I.R</a></li>
+          <li><a href="#">A.N.E.V.A.R</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Bio Consult. Toate drepturile rezervate.</p>
+      <p class="footer-meta">Pitești, România</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
+</script>
+</body>
+</html>
