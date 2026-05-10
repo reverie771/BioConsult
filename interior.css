@@ -160,11 +160,14 @@ body::before {
   z-index: 200;
 }
 /* Invisible bridge so the menu stays open while the cursor moves from
-   the trigger down into the menu. Spans the gap between them. */
-.submenu::before {
+   the trigger down into the menu. Anchored to .has-submenu (NOT .submenu)
+   so it (a) only spans the trigger's width — not the 280px submenu — and
+   (b) doesn't move with the submenu's close transform, which would
+   otherwise sweep it across adjacent nav items and re-fire :hover. */
+.nav .has-submenu::before {
   content: '';
   position: absolute;
-  top: -14px;
+  top: 100%;
   left: 0; right: 0;
   height: 14px;
 }
