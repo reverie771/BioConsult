@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bio Consult — Audit Financiar, Expertiză Contabilă, Insolvență, Evaluări</title>
+<title>Oprea-Barac — Audit Financiar, Expertiză Contabilă, Insolvență, Evaluări</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Hanken+Grotesk:wght@300..800&display=swap" rel="stylesheet">
@@ -874,26 +874,19 @@ a.contact-item-value:hover { color: var(--accent-light); }
 
 /* Nav dropdown / submenu (Audit Financiar → Rapoarte transparență) */
 .nav .has-submenu { position: relative; }
-.nav .has-submenu > a::after {
-  content: '';
+.nav .has-submenu > a .chev {
   display: inline-block;
-  width: 6px; height: 6px;
-  border-right: 1px solid currentColor;
-  border-bottom: 1px solid currentColor;
-  transform: rotate(45deg) translate(-2px, -1px);
-  margin-left: 0.5rem;
+  margin-left: 0.35em;
+  font-size: 0.65em;
+  vertical-align: 1px;
   opacity: 0.55;
-  transition: transform .25s, opacity .25s;
+  transition: opacity .2s;
 }
-.nav .has-submenu:hover > a::after,
-.nav .has-submenu:focus-within > a::after {
-  opacity: 1;
-  transform: rotate(225deg) translate(-2px, -1px);
-}
-.nav .has-submenu > a::before { display: none; }
+.nav .has-submenu:hover > a .chev,
+.nav .has-submenu:focus-within > a .chev { opacity: 1; }
 .submenu {
   position: absolute;
-  top: calc(100% + 14px);
+  top: 100%;
   left: -1rem;
   min-width: 280px;
   background: var(--paper);
@@ -903,12 +896,19 @@ a.contact-item-value:hover { color: var(--accent-light); }
   list-style: none;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-6px);
-  transition: opacity .22s ease, transform .22s ease, visibility .22s;
+  transform: translateY(-4px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
   z-index: 200;
 }
+.submenu::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 0; right: 0;
+  height: 14px;
+}
 .nav .has-submenu:hover .submenu,
-.nav .has-submenu:focus-within .submenu { opacity: 1; visibility: visible; transform: translateY(0); }
+.nav .has-submenu:focus-within .submenu { opacity: 1; visibility: visible; transform: translateY(14px); }
 .submenu li { margin: 0; }
 .submenu a {
   display: flex !important;
@@ -1239,12 +1239,10 @@ a.info-trio-item .v:hover,
 <div class="topbar">
   <div class="topbar-inner">
     <div class="topbar-left">
-      <span class="dot">●</span>
-      <span>Membri C.A.F.R. · C.E.C.C.A.R · U.N.P.I.R · A.N.E.V.A.R</span>
-    </div>
-    <div class="topbar-right">
       <a href="tel:+40744335654">+40 744 335 654</a>
       <a href="mailto:oprea.luminita@yahoo.com">oprea.luminita@yahoo.com</a>
+    </div>
+    <div class="topbar-right">
       <span class="lang">RO</span>
     </div>
   </div>
@@ -1253,15 +1251,14 @@ a.info-trio-item .v:hover,
 <header class="header">
   <div class="header-inner">
     <a href="#" class="logo">
-      <span>Bio <span class="logo-mark">·</span> Consult</span>
+      <span>Oprea<span class="logo-mark">-</span>Barac</span>
     </a>
     <nav class="nav">
       <a href="index.html">Home</a>
       <a href="despre.html">Despre Noi</a>
       <span class="has-submenu">
-        <a href="audit.html">Audit Financiar</a>
+        <a href="audit.html">Audit Financiar<span class="chev">▾</span></a>
         <ul class="submenu">
-          <li><a href="audit.html"><span>Despre serviciu</span></a></li>
           <li><a href="#"><span>Raport transparență 2020</span><span class="pdf-flag">PDF</span></a></li>
           <li><a href="#"><span>Raport transparență 2021</span><span class="pdf-flag">PDF</span></a></li>
           <li><a href="#"><span>Raport transparență 2022</span><span class="pdf-flag">PDF</span></a></li>
@@ -1332,7 +1329,7 @@ a.info-trio-item .v:hover,
   <div class="about-content scroll-reveal">
     <div class="section-label">I — Cabinet</div>
     <h2>Două decenii de practică, sub <em>o singură semnătură</em>.</h2>
-    <p>Bio Consult este un cabinet independent specializat în audit financiar, expertiză contabilă, evaluări autorizate și asistență în proceduri de insolvență. Practicăm la intersecția a patru profesii reglementate, cu mandate care acoperă întreg ciclul financiar al unei companii.</p>
+    <p>Oprea-Barac este un cabinet independent specializat în audit financiar, expertiză contabilă, evaluări autorizate și asistență în proceduri de insolvență. Practicăm la intersecția a patru profesii reglementate, cu mandate care acoperă întreg ciclul financiar al unei companii.</p>
     <p>Dosarele pe care le semnăm trec prin mâinile partenerilor — nu prin filtre intermediare. Aceasta este promisiunea noastră, păstrată consecvent timp de două decenii.</p>
     <a href="despre.html" class="about-cta">Despre cabinet →</a>
   </div>
@@ -1495,7 +1492,7 @@ a.info-trio-item .v:hover,
     <div class="footer-top">
       <div class="footer-brand">
         <a href="#" class="logo">
-          <span>Bio <span class="logo-mark">·</span> Consult</span>
+          <span>Oprea<span class="logo-mark">-</span>Barac</span>
         </a>
         <p>Cabinet independent acreditat C.A.F.R., C.E.C.C.A.R, U.N.P.I.R și A.N.E.V.A.R, cu sediul în Pitești.</p>
       </div>
@@ -1527,7 +1524,7 @@ a.info-trio-item .v:hover,
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 Bio Consult. Toate drepturile rezervate.</p>
+      <p>© 2026 Oprea-Barac. Toate drepturile rezervate.</p>
       <p class="footer-meta">Pitești, România</p>
     </div>
   </div>

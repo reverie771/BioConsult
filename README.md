@@ -1,6 +1,6 @@
-# Bio Consult — V2 (Velican structure)
+# Oprea-Barac — V2 (Velican structure)
 
-Static site for Bio Consult. **V2 mirrors the structure of velican-expertaudit.ro** while keeping the V1 typography (Fraunces + Hanken Grotesk), color palette, and components that worked.
+Static site for Oprea-Barac. **V2 mirrors the structure of velican-expertaudit.ro** while keeping the V1 typography (Fraunces + Hanken Grotesk), color palette, and components that worked.
 
 ## Stack
 

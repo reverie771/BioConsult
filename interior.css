@@ -1,4 +1,4 @@
-/* Bio Consult — shared styles for interior pages (Cabinet / V1 styling) */
+/* Oprea-Barac — shared styles for interior pages */
 :root {
   --ink: #0A1628;
   --ink-soft: #1B2A40;
@@ -124,26 +124,19 @@ body::before {
 
 /* Nav dropdown / submenu (Audit Financiar → Rapoarte transparență) */
 .nav .has-submenu { position: relative; }
-.nav .has-submenu > a::after {
-  content: '';
+.nav .has-submenu > a .chev {
   display: inline-block;
-  width: 6px; height: 6px;
-  border-right: 1px solid currentColor;
-  border-bottom: 1px solid currentColor;
-  transform: rotate(45deg) translate(-2px, -1px);
-  margin-left: 0.5rem;
+  margin-left: 0.35em;
+  font-size: 0.65em;
+  vertical-align: 1px;
   opacity: 0.55;
-  transition: transform .25s, opacity .25s;
+  transition: opacity .2s;
 }
-.nav .has-submenu:hover > a::after,
-.nav .has-submenu:focus-within > a::after {
-  opacity: 1;
-  transform: rotate(225deg) translate(-2px, -1px);
-}
-.nav .has-submenu > a::before { display: none; }
+.nav .has-submenu:hover > a .chev,
+.nav .has-submenu:focus-within > a .chev { opacity: 1; }
 .submenu {
   position: absolute;
-  top: calc(100% + 14px);
+  top: 100%;
   left: -1rem;
   min-width: 280px;
   background: var(--paper);
@@ -153,12 +146,21 @@ body::before {
   list-style: none;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-6px);
-  transition: opacity .22s ease, transform .22s ease, visibility .22s;
+  transform: translateY(-4px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
   z-index: 200;
 }
+/* Invisible bridge so the menu stays open while the cursor moves from
+   the trigger down into the menu. Spans the gap between them. */
+.submenu::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 0; right: 0;
+  height: 14px;
+}
 .nav .has-submenu:hover .submenu,
-.nav .has-submenu:focus-within .submenu { opacity: 1; visibility: visible; transform: translateY(0); }
+.nav .has-submenu:focus-within .submenu { opacity: 1; visibility: visible; transform: translateY(14px); }
 .submenu li { margin: 0; }
 .submenu a {
   display: flex !important;
