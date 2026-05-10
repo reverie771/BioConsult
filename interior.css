@@ -197,6 +197,10 @@ body::before {
   padding: 5rem var(--pad-x) 2.5rem;
   position: relative;
 }
+.page-head.simple {
+  padding: 4rem var(--pad-x) 0;
+}
+.page-head.simple .crumb { margin-bottom: 0; }
 .crumb {
   font-size: 0.7rem; letter-spacing: 0.28em; text-transform: uppercase;
   color: var(--accent-deep); margin-bottom: 2rem; font-weight: 500;
@@ -255,6 +259,46 @@ body::before {
   max-width: 820px;
   margin: 0 auto;
   padding: 0 var(--pad-x) 5rem;
+}
+.page-content.split {
+  max-width: none;
+  padding: 0;
+}
+
+/* Split layout: image left, content right (used by Despre Noi) */
+.page-split {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 3rem var(--pad-x) 5rem;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 4rem;
+  align-items: start;
+}
+.page-split-image {
+  position: sticky;
+  top: 130px;
+}
+.page-split-image .photo {
+  aspect-ratio: 3/4;
+  background-color: var(--ink);
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(0.2) contrast(1.04);
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.page-split-image .photo::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 70%, rgba(10,22,40,0.18) 100%);
+  pointer-events: none;
+}
+@media (max-width: 980px) {
+  .page-split { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 1.2rem 3rem; }
+  .page-split-image { position: static; }
+  .page-split-image .photo { aspect-ratio: 16/9; max-height: 360px; }
 }
 .page-content .kicker {
   font-family: var(--serif);
