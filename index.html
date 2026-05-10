@@ -938,47 +938,16 @@ a.contact-item-value:hover { color: var(--accent-light); }
 }
 .submenu a:hover .pdf-flag { color: var(--accent-deep); border-color: var(--accent); }
 
-/* Photo service cards (top-of-page hero, Velican-style) */
+/* Photo service cards (top-of-page hero, Velican-style) — FULL BLEED */
 .svc-cards-section {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 4rem var(--pad-x) 2rem;
-}
-.svc-cards-intro {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 4rem;
-  align-items: end;
-  margin-bottom: 3.5rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid var(--line);
-}
-.svc-cards-intro h1 {
-  font-family: var(--serif);
-  font-weight: 320;
-  font-size: clamp(2.2rem, 4.6vw, 3.8rem);
-  line-height: 1.02;
-  letter-spacing: -0.028em;
-  font-variation-settings: "opsz" 144, "SOFT" 30;
-  text-wrap: pretty;
-  max-width: 22ch;
-}
-.svc-cards-intro h1 em {
-  font-style: italic;
-  color: var(--accent-deep);
-  font-variation-settings: "opsz" 144, "SOFT" 100;
-}
-.svc-cards-intro p {
-  color: var(--ink-soft);
-  font-size: 1rem;
-  line-height: 1.65;
-  max-width: 36ch;
-  padding-bottom: 0.4rem;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
 .svc-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.4rem;
+  gap: 0;
 }
 .svc-card {
   position: relative;
@@ -990,7 +959,7 @@ a.contact-item-value:hover { color: var(--accent-light); }
   overflow: hidden;
   transition: transform .35s cubic-bezier(0.2,0.8,0.2,1);
 }
-.svc-card:hover { transform: translateY(-4px); }
+.svc-card:hover { transform: none; }
 .svc-card .photo {
   aspect-ratio: 3/4;
   background-size: cover;
@@ -1008,7 +977,7 @@ a.contact-item-value:hover { color: var(--accent-light); }
 }
 .svc-card .label {
   position: absolute;
-  inset: auto 1.4rem 4.4rem 1.4rem;
+  inset: auto 1.6rem 1.6rem 1.6rem;
   z-index: 2;
 }
 .svc-card .num {
@@ -1030,29 +999,14 @@ a.contact-item-value:hover { color: var(--accent-light); }
   color: var(--paper);
   font-variation-settings: "opsz" 80, "SOFT" 40;
   text-wrap: pretty;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(244,239,230,0.22);
 }
 .svc-card .title em {
   font-style: italic;
   color: var(--accent-light);
   font-variation-settings: "opsz" 80, "SOFT" 100;
 }
-.svc-card .more {
-  position: absolute;
-  inset: auto 1.4rem 1.4rem 1.4rem;
-  z-index: 2;
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--accent-light);
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(244,239,230,0.22);
-  transition: gap .25s, color .25s;
-}
-.svc-card:hover .more { gap: 0.95rem; color: var(--paper); }
 
 /* Contact info trio (Velican-style strip) */
 .info-trio {
@@ -1068,29 +1022,39 @@ a.contact-item-value:hover { color: var(--accent-light); }
   grid-template-columns: repeat(3, 1fr);
 }
 .info-trio-item {
-  padding: 3rem 2rem;
+  padding: 3.5rem 2rem;
   border-right: 1px solid var(--line);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .info-trio-item:last-child { border-right: none; }
+.info-trio-item .info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px; height: 56px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  color: var(--accent-deep);
+  margin-bottom: 1.4rem;
+  background: var(--paper);
+  transition: background .25s, color .25s, transform .25s;
+}
+.info-trio-item:hover .info-icon {
+  background: var(--accent);
+  color: var(--paper);
+  transform: translateY(-2px);
+}
+.info-trio-item .info-icon svg { width: 22px; height: 22px; }
 .info-trio-item .lbl {
   font-size: 0.66rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--accent-deep);
   font-weight: 600;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.7rem;
-}
-.info-trio-item .lbl::before,
-.info-trio-item .lbl::after {
-  content: '';
-  width: 18px; height: 1px;
-  background: var(--accent);
-  opacity: 0.6;
+  margin-bottom: 0.85rem;
 }
 .info-trio-item .v {
   font-family: var(--serif);
@@ -1218,11 +1182,9 @@ a.info-trio-item .v:hover,
   .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
   .footer-brand { grid-column: 1 / -1; }
   /* New section responsiveness */
-  .svc-cards-section { padding: 3rem 1.2rem 1.5rem; }
-  .svc-cards-intro { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 1.5rem; }
-  .svc-cards { grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .svc-card .label { inset: auto 1rem 3.6rem 1rem; }
-  .svc-card .more { inset: auto 1rem 1rem 1rem; }
+  .svc-cards-section { padding: 0; }
+  .svc-cards { grid-template-columns: 1fr 1fr; gap: 0; }
+  .svc-card .label { inset: auto 1rem 1.2rem 1rem; }
   .svc-card .title { font-size: 1.15rem; }
   .info-trio-inner { grid-template-columns: 1fr; }
   .info-trio-item { padding: 2rem 1.2rem; border-right: none; border-bottom: 1px solid var(--line); }
@@ -1277,11 +1239,6 @@ a.info-trio-item .v:hover,
 
 <!-- HERO: 4 photo service cards (Velican-style) -->
 <section class="svc-cards-section">
-  <div class="svc-cards-intro reveal">
-    <h1>Patru discipline reglementate. <em>Un singur</em> standard.</h1>
-    <p>Cabinet independent specializat în audit financiar, expertiză contabilă judiciară, evaluări autorizate și asistență în proceduri de insolvență. Sediu în Pitești.</p>
-  </div>
-
   <div class="svc-cards">
     <!-- TODO: replace picsum.photos URLs with real photographs -->
     <a href="audit.html" class="svc-card scroll-reveal">
@@ -1290,7 +1247,6 @@ a.info-trio-item .v:hover,
         <span class="num">i.</span>
         <span class="title">Audit <em>Financiar</em></span>
       </div>
-      <span class="more">Află mai multe →</span>
     </a>
     <a href="expertiza.html" class="svc-card scroll-reveal">
       <div class="photo" style="background-image: url('https://picsum.photos/seed/expertiza-bio/800/1000?grayscale');"></div>
@@ -1298,7 +1254,6 @@ a.info-trio-item .v:hover,
         <span class="num">ii.</span>
         <span class="title">Expertiză <em>Contabilă</em></span>
       </div>
-      <span class="more">Află mai multe →</span>
     </a>
     <a href="insolventa.html" class="svc-card scroll-reveal">
       <div class="photo" style="background-image: url('https://picsum.photos/seed/insolventa-bio/800/1000?grayscale');"></div>
@@ -1306,7 +1261,6 @@ a.info-trio-item .v:hover,
         <span class="num">iii.</span>
         <span class="title"><em>Insolvență</em></span>
       </div>
-      <span class="more">Află mai multe →</span>
     </a>
     <a href="evaluari.html" class="svc-card scroll-reveal">
       <div class="photo" style="background-image: url('https://picsum.photos/seed/evaluari-bio/800/1000?grayscale');"></div>
@@ -1314,83 +1268,18 @@ a.info-trio-item .v:hover,
         <span class="num">iv.</span>
         <span class="title">Evaluări <em>Autorizate</em></span>
       </div>
-      <span class="more">Află mai multe →</span>
     </a>
   </div>
 </section>
 
 
 
-<section class="about" id="despre">
-  <div class="about-visual marble scroll-reveal">
-    <span class="marble-tag">— Despre cabinet</span>
-    <p class="quote">Independența nu se declară. Se demonstrează în fiecare misiune semnată.</p>
-  </div>
-  <div class="about-content scroll-reveal">
-    <div class="section-label">I — Cabinet</div>
-    <h2>Două decenii de practică, sub <em>o singură semnătură</em>.</h2>
-    <p>Oprea-Barac este un cabinet independent specializat în audit financiar, expertiză contabilă, evaluări autorizate și asistență în proceduri de insolvență. Practicăm la intersecția a patru profesii reglementate, cu mandate care acoperă întreg ciclul financiar al unei companii.</p>
-    <p>Dosarele pe care le semnăm trec prin mâinile partenerilor — nu prin filtre intermediare. Aceasta este promisiunea noastră, păstrată consecvent timp de două decenii.</p>
-    <a href="despre.html" class="about-cta">Despre cabinet →</a>
-  </div>
-</section>
-
-<!-- Contact info trio (Velican-style strip) -->
-<section class="info-trio">
-  <div class="info-trio-inner">
-    <div class="info-trio-item">
-      <div class="lbl">Email</div>
-      <a href="mailto:oprea.luminita@yahoo.com" class="v">oprea.luminita@yahoo.com</a>
-    </div>
-    <div class="info-trio-item">
-      <div class="lbl">Telefon</div>
-      <a href="tel:+40744335654" class="v">+40 744 335 654</a>
-    </div>
-    <div class="info-trio-item">
-      <div class="lbl">Adresă</div>
-      <span class="v">Pitești, România</span>
-    </div>
-  </div>
-</section>
-
-<!-- Three info blocks (Velican-style: photo + heading + link) -->
-<section class="info-blocks">
-  <a href="contact.html" class="info-block scroll-reveal">
-    <div class="photo" style="background-image: url('https://picsum.photos/seed/audit-cta-bio/800/600?grayscale');"></div>
-    <div class="body">
-      <span class="eyebrow">— Solicită o discuție</span>
-      <h3>Dorești un audit pentru una din <em>firmele tale</em>?</h3>
-      <p>Suntem aici să te ajutăm cu orice problemă de ordin financiar.</p>
-      <span class="more">Mai mult →</span>
-    </div>
-  </a>
-
-  <a href="https://mfinante.gov.ro/" target="_blank" rel="noopener" class="info-block scroll-reveal">
-    <div class="photo" style="background-image: url('https://picsum.photos/seed/finante-bio/800/600?grayscale');"></div>
-    <div class="body">
-      <span class="eyebrow">— Ultimele informații</span>
-      <h3>Informații <em>financiare</em></h3>
-      <p>Află ultimele informații din domeniul financiar și fiscal.</p>
-      <span class="more">Mai mult →</span>
-    </div>
-  </a>
-
-  <a href="despre.html" class="info-block scroll-reveal">
-    <div class="photo" style="background-image: url('https://picsum.photos/seed/portofoliu-bio/800/600?grayscale');"></div>
-    <div class="body">
-      <span class="eyebrow">— Află părerile altora</span>
-      <h3>Portofoliu <em>clienți</em></h3>
-      <p>Companii care au avut încredere în noi de-a lungul a două decenii.</p>
-      <span class="more">Mai mult →</span>
-    </div>
-  </a>
-</section>
-
+<!-- 2. PARTENERI -->
 <section class="partners" id="parteneri">
   <div class="partners-inner">
     <div class="partners-head scroll-reveal">
       <div>
-        <div class="section-label">III — Parteneri</div>
+        <div class="section-label">— Parteneri</div>
         <h2>Doi parteneri, <em>patru</em> calificări reglementate.</h2>
       </div>
       <p>Cabinetul este condus de doi parteneri care semnează personal fiecare misiune. Calificările profesionale sunt verificate și păstrate active prin formare continuă, conform reglementărilor naționale.</p>
@@ -1439,52 +1328,64 @@ a.info-trio-item .v:hover,
   </div>
 </section>
 
-<section class="stats">
-  <div class="stats-inner">
-    <div class="stat scroll-reveal">
-      <div class="stat-num">22<em>+</em></div>
-      <div class="stat-label">ani de practică</div>
+<!-- 3a. CONTACT INFO TRIO (with icons) -->
+<section class="info-trio">
+  <div class="info-trio-inner">
+    <div class="info-trio-item">
+      <span class="info-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 7l9 6 9-6"/></svg>
+      </span>
+      <div class="lbl">Email</div>
+      <a href="mailto:oprea.luminita@yahoo.com" class="v">oprea.luminita@yahoo.com</a>
     </div>
-    <div class="stat scroll-reveal">
-      <div class="stat-num">4<em>·</em></div>
-      <div class="stat-label">profesii reglementate</div>
+    <div class="info-trio-item">
+      <span class="info-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </span>
+      <div class="lbl">Telefon</div>
+      <a href="tel:+40744335654" class="v">+40 744 335 654</a>
     </div>
-    <div class="stat scroll-reveal">
-      <div class="stat-num">160<em>+</em></div>
-      <div class="stat-label">clienți activi</div>
-    </div>
-    <div class="stat scroll-reveal">
-      <div class="stat-num">540<em>+</em></div>
-      <div class="stat-label">misiuni semnate</div>
+    <div class="info-trio-item">
+      <span class="info-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </span>
+      <div class="lbl">Adresă</div>
+      <span class="v">Pitești, România</span>
     </div>
   </div>
 </section>
 
-<section class="contact" id="contact">
-  <div class="contact-inner">
-    <div class="scroll-reveal">
-      <div class="section-label">IV — Contact</div>
-      <h2>Discutăm <em>întâi</em>.<br>Misiunea urmează.</h2>
-      <p class="contact-lead">Fiecare colaborare începe cu o discuție onestă despre scopul misiunii și așteptările reciproce — fără promisiuni grăbite.</p>
-      <a href="mailto:oprea.luminita@yahoo.com" class="contact-cta">Programează o discuție →</a>
+<!-- 3b. THREE INFO BLOCKS -->
+<section class="info-blocks">
+  <a href="contact.html" class="info-block scroll-reveal">
+    <div class="photo" style="background-image: url('https://picsum.photos/seed/audit-cta-bio/800/600?grayscale');"></div>
+    <div class="body">
+      <span class="eyebrow">— Solicită o discuție</span>
+      <h3>Dorești un audit pentru una din <em>firmele tale</em>?</h3>
+      <p>Suntem aici să te ajutăm cu orice problemă de ordin financiar.</p>
+      <span class="more">Mai mult →</span>
     </div>
-    <div class="contact-details scroll-reveal">
-      <div class="contact-item">
-        <div class="contact-item-label">Auditor · Partener I</div>
-        <a href="tel:+40744335654" class="contact-item-value">+40 744 335 654</a><br>
-        <a href="mailto:oprea.luminita@yahoo.com" class="contact-item-value" style="font-size:1.05rem;">oprea.luminita@yahoo.com</a>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-label">Evaluator · Partener II</div>
-        <a href="tel:+40745017693" class="contact-item-value">+40 745 017 693</a><br>
-        <a href="mailto:oprea_barac@yahoo.com" class="contact-item-value" style="font-size:1.05rem;">oprea_barac@yahoo.com</a>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-label">Sediu</div>
-        <span class="contact-item-value">Pitești, România</span>
-      </div>
+  </a>
+
+  <a href="https://mfinante.gov.ro/" target="_blank" rel="noopener" class="info-block scroll-reveal">
+    <div class="photo" style="background-image: url('https://picsum.photos/seed/finante-bio/800/600?grayscale');"></div>
+    <div class="body">
+      <span class="eyebrow">— Ultimele informații</span>
+      <h3>Informații <em>financiare</em></h3>
+      <p>Află ultimele informații din domeniul financiar și fiscal.</p>
+      <span class="more">Mai mult →</span>
     </div>
-  </div>
+  </a>
+
+  <a href="despre.html" class="info-block scroll-reveal">
+    <div class="photo" style="background-image: url('https://picsum.photos/seed/portofoliu-bio/800/600?grayscale');"></div>
+    <div class="body">
+      <span class="eyebrow">— Află părerile altora</span>
+      <h3>Portofoliu <em>clienți</em></h3>
+      <p>Companii care au avut încredere în noi de-a lungul a două decenii.</p>
+      <span class="more">Mai mult →</span>
+    </div>
+  </a>
 </section>
 
 <footer class="footer">
