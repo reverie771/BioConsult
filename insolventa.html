@@ -37,7 +37,10 @@
     </svg>
     <span class="logo-text">Oprea<span class="logo-mark">-</span>Barac</span>
   </a>
-  <nav class="nav">
+  <button class="nav-toggle" aria-label="Deschide meniul" aria-expanded="false" aria-controls="primary-nav">
+    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+  </button>
+  <nav class="nav" id="primary-nav">
       <a href="index.html">Home</a>
       <a href="despre.html">Despre Noi</a>
       <span class="has-submenu">
@@ -142,6 +145,7 @@
 </div></footer>
 
 <script>
+// Scroll reveal
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -151,6 +155,36 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
+
+// Mobile nav drawer
+(function () {
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.nav');
+  if (!toggle || !nav) return;
+
+  const backdrop = document.createElement('div');
+  backdrop.className = 'nav-backdrop';
+  document.body.appendChild(backdrop);
+
+  function setOpen(open) {
+    nav.classList.toggle('is-open', open);
+    document.body.classList.toggle('nav-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Închide meniul' : 'Deschide meniul');
+  }
+
+  toggle.addEventListener('click', () => setOpen(!nav.classList.contains('is-open')));
+  backdrop.addEventListener('click', () => setOpen(false));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('is-open')) setOpen(false);
+  });
+  nav.addEventListener('click', (e) => {
+    if (e.target.closest('a')) setOpen(false);
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 980 && nav.classList.contains('is-open')) setOpen(false);
+  });
+})();
 </script>
 
 </body>

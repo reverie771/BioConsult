@@ -202,6 +202,47 @@ body::before {
 }
 .submenu a:hover .pdf-flag { color: var(--accent-deep); border-color: var(--accent); }
 
+/* Mobile hamburger toggle — hidden on desktop, shown via media query below */
+.nav-toggle {
+  display: none;
+  width: 44px; height: 44px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  position: relative;
+  z-index: 120; /* above nav drawer (110) so it stays tappable when open */
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.nav-toggle .bar {
+  display: block;
+  width: 22px; height: 1.5px;
+  background: var(--ink);
+  transition: transform .25s ease, opacity .25s ease;
+  transform-origin: center;
+}
+.nav-toggle[aria-expanded="true"] .bar:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .bar:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .bar:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Mobile nav backdrop (created dynamically via JS, appended to body) */
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 22, 40, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s ease, visibility .3s ease;
+  z-index: 95; /* below header (100) so the X stays visible above it */
+}
+body.nav-open .nav-backdrop { opacity: 1; visibility: visible; }
+body.nav-open { overflow: hidden; }
+
 /* Page header (legacy — used only by 'standard' layout if any) */
 .page-head {
   max-width: var(--container);
@@ -784,12 +825,81 @@ body::before {
 
 /* Responsive */
 @media (max-width: 980px) {
-  .topbar-inner { padding: 0.6rem 1.2rem; flex-wrap: wrap; gap: 0.5rem 1.2rem; }
+  /* Hide topbar entirely on mobile (phone + email + lang) */
+  .topbar { display: none; }
+
   .header-inner { padding: 1.1rem 1.2rem; }
   .logo-sub { display: none; }
-  .nav { gap: 0.8rem; }
-  .nav a:not(.nav-cta) { display: none; }
-  .nav .has-submenu { display: none; }
+
+  /* Hamburger visible on mobile */
+  .nav-toggle { display: flex; }
+
+  /* Nav becomes a slide-in drawer from the right */
+  .nav {
+    position: fixed;
+    top: 0; right: 0;
+    height: 100vh;
+    width: min(340px, 88vw);
+    background: var(--paper);
+    border-left: 1px solid var(--line);
+    box-shadow: -10px 0 40px rgba(10, 22, 40, 0.15);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 5rem 1.6rem 1.6rem;
+    transform: translateX(100%);
+    transition: transform .3s ease;
+    z-index: 110; /* within header's stacking context — above logo, below toggle (120) */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav.is-open { transform: translateX(0); }
+
+  /* Show all nav items in the drawer (overrides the desktop hide rules) */
+  .nav a:not(.nav-cta) {
+    display: block;
+    padding: 0.95rem 0;
+    font-size: 0.95rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav a:not(.nav-cta)::after { display: none; } /* underline anim doesn't suit a vertical list */
+
+  /* Submenu shown inline below its parent in the drawer */
+  .nav .has-submenu { display: block; position: static; }
+  .nav .has-submenu > a { border-bottom: 1px solid var(--line); }
+  .nav .has-submenu > a .chev { display: none; } /* dropdown affordance moot on mobile */
+  .nav .has-submenu::before { display: none; } /* desktop hover-bridge not needed here */
+  .submenu {
+    position: static;
+    opacity: 1; visibility: visible; transform: none;
+    box-shadow: none; border: none; background: transparent;
+    min-width: 0;
+    padding: 0.4rem 0 0.6rem;
+    z-index: auto;
+    transition: none;
+  }
+  .submenu::before { display: none; }
+  .submenu li a {
+    padding: 0.5rem 0 0.5rem 1.4rem !important;
+    font-size: 0.78rem !important;
+    border-bottom: none !important;
+    color: var(--muted) !important;
+  }
+  .submenu li a:hover { background: transparent; color: var(--accent-deep) !important; }
+
+  /* Contact CTA pinned to the bottom of the drawer */
+  .nav-cta {
+    margin-top: auto;
+    text-align: center;
+    width: 100%;
+    padding: 1rem 1.2rem !important;
+  }
+
+  /* Padding alignment — these were stuck at var(--pad-x) (2rem) until 760px,
+     misaligning them with the header's 1.2rem at tablet widths */
+  .page-banner { padding: 2.8rem 1.2rem 2.2rem; }
+  .contact-map-section { padding: 0 1.2rem 4rem; }
+
   .page-head { padding: 3.5rem 1.2rem 2rem; }
   .section { padding: 3rem 1.2rem; }
   .two-col { grid-template-columns: 1fr; gap: 2rem; }
