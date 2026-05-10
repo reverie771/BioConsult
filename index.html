@@ -507,66 +507,35 @@ body::before {
 }
 .service-row:hover .arrow { gap: 1rem; }
 
-/* Partners */
+/* Partners — full-bleed, two cards filling the window */
 .partners {
   background: var(--paper);
-  padding: 7rem 0;
+  padding: 0;
   border-top: 1px solid var(--line);
 }
-.partners-inner {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 0 var(--pad-x);
-}
-.partners-head {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 4rem;
-  align-items: end;
-  margin-bottom: 4rem;
-}
-.partners-head h2 {
-  font-family: var(--serif);
-  font-weight: 320;
-  font-size: clamp(2rem, 3.4vw, 2.8rem);
-  line-height: 1.06;
-  letter-spacing: -0.022em;
-  font-variation-settings: "opsz" 144, "SOFT" 50;
-  text-wrap: pretty;
-}
-.partners-head h2 em {
-  font-style: italic;
-  color: var(--accent-deep);
-  font-variation-settings: "opsz" 144, "SOFT" 100;
-}
-.partners-head p {
-  color: var(--ink-soft);
-  font-size: 1rem;
-  line-height: 1.65;
-  max-width: 42ch;
-  padding-bottom: 0.4rem;
-}
-
 .partner-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2.5rem;
+  gap: 0;
 }
 .partner-card {
   display: grid;
-  grid-template-columns: 0.7fr 1fr;
-  gap: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--line);
+  grid-template-columns: 1fr 1.3fr;
+  gap: 0;
+  padding: 0;
+  border-top: none;
+  background: var(--paper);
 }
+.partner-card:nth-child(2) { border-left: 1px solid var(--line); }
 .partner-portrait {
-  aspect-ratio: 3/4;
+  aspect-ratio: auto;
   position: relative;
   overflow: hidden;
+  min-height: 100%;
 }
 .partner-portrait .label {
   position: absolute;
-  top: 1rem; left: 1rem;
+  top: 1.4rem; left: 1.4rem;
   font-family: var(--sans);
   font-size: 0.62rem;
   letter-spacing: 0.24em;
@@ -576,20 +545,24 @@ body::before {
 }
 .partner-portrait .initials {
   position: absolute;
-  bottom: 1rem; right: 1.2rem;
+  bottom: 1.4rem; right: 1.6rem;
   font-family: var(--serif);
   font-style: italic;
   font-weight: 300;
-  font-size: 4.5rem;
+  font-size: 5.2rem;
   color: var(--accent-light);
   opacity: 0.55;
   line-height: 1;
   font-variation-settings: "opsz" 144, "SOFT" 100;
 }
+.partner-info {
+  padding: 3rem 2.4rem;
+  align-self: center;
+}
 .partner-info h3 {
   font-family: var(--serif);
   font-weight: 350;
-  font-size: 1.55rem;
+  font-size: 1.7rem;
   line-height: 1.1;
   letter-spacing: -0.012em;
   margin-bottom: 0.5rem;
@@ -600,8 +573,8 @@ body::before {
   font-family: var(--serif);
   font-style: italic;
   color: var(--accent-deep);
-  font-size: 0.98rem;
-  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  margin-bottom: 1.6rem;
   font-variation-settings: "opsz" 80, "SOFT" 100;
 }
 .partner-info ul {
@@ -609,7 +582,7 @@ body::before {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.6rem;
 }
 .partner-info li {
   font-size: 0.86rem;
@@ -961,7 +934,9 @@ a.contact-item-value:hover { color: var(--accent-light); }
 }
 .svc-card:hover { transform: none; }
 .svc-card .photo {
-  aspect-ratio: 3/4;
+  height: calc(100vh - 120px);
+  min-height: 520px;
+  background-color: var(--ink);
   background-size: cover;
   background-position: center;
   position: relative;
@@ -1184,6 +1159,7 @@ a.info-trio-item .v:hover,
   /* New section responsiveness */
   .svc-cards-section { padding: 0; }
   .svc-cards { grid-template-columns: 1fr 1fr; gap: 0; }
+  .svc-card .photo { height: auto; aspect-ratio: 4/5; min-height: 360px; }
   .svc-card .label { inset: auto 1rem 1.2rem 1rem; }
   .svc-card .title { font-size: 1.15rem; }
   .info-trio-inner { grid-template-columns: 1fr; }
@@ -1193,6 +1169,7 @@ a.info-trio-item .v:hover,
 }
 @media (max-width: 600px) {
   .svc-cards { grid-template-columns: 1fr; }
+  .svc-card .photo { aspect-ratio: 3/4; min-height: 320px; }
 }
 </style>
 </head>
@@ -1276,16 +1253,7 @@ a.info-trio-item .v:hover,
 
 <!-- 2. PARTENERI -->
 <section class="partners" id="parteneri">
-  <div class="partners-inner">
-    <div class="partners-head scroll-reveal">
-      <div>
-        <div class="section-label">— Parteneri</div>
-        <h2>Doi parteneri, <em>patru</em> calificări reglementate.</h2>
-      </div>
-      <p>Cabinetul este condus de doi parteneri care semnează personal fiecare misiune. Calificările profesionale sunt verificate și păstrate active prin formare continuă, conform reglementărilor naționale.</p>
-    </div>
-
-    <div class="partner-grid">
+  <div class="partner-grid">
       <article class="partner-card scroll-reveal">
         <div class="partner-portrait marble">
           <span class="label">Partener 01</span>
@@ -1325,7 +1293,6 @@ a.info-trio-item .v:hover,
         </div>
       </article>
     </div>
-  </div>
 </section>
 
 <!-- 3a. CONTACT INFO TRIO (with icons) -->
