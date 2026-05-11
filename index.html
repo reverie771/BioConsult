@@ -6,7 +6,7 @@
 <title>Oprea-Barac — Audit Financiar, Expertiză Contabilă, Insolvență, Evaluări</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Hanken+Grotesk:wght@300..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
   --ink: #0A1628;
@@ -21,8 +21,8 @@
   --muted: #5C6B7A;
   --line: rgba(10, 22, 40, 0.12);
   --line-soft: rgba(10, 22, 40, 0.07);
-  --serif: 'Fraunces', 'Times New Roman', serif;
-  --sans: 'Hanken Grotesk', -apple-system, system-ui, sans-serif;
+  --serif: 'Playfair Display', 'Times New Roman', serif;
+  --sans: 'Poppins', -apple-system, system-ui, sans-serif;
   --container: 1280px;
   --pad-x: 2rem;
 }
@@ -1345,87 +1345,111 @@ a.info-trio-item .v:hover,
   }
 
   /* === ENHANCED CONTACT CARDS (mobile) ===
-     Replace the flat 3-up trio with elevated cards: icon | label+value | chevron,
-     stretched-link on the email/phone items so the whole card is tappable. */
-  .info-trio { padding: 2.5rem 1.2rem; border: none; }
+     Vertical stacked layout — large soft-tinted icon circle with a small
+     accent dot, big serif label, edge-to-edge gold separator bars between
+     (and above/below) the cards. */
+  .info-trio {
+    padding: 4px 0;            /* thin gold strip top and bottom of the section */
+    border: none;
+    background: var(--accent); /* gold shows through gaps between cards */
+  }
   .info-trio-inner {
     grid-template-columns: 1fr;
-    gap: 0.85rem;
+    gap: 4px;                  /* reveals 4px of accent gold between cards */
     padding: 0;
+    max-width: none;
+    background: transparent;
   }
   .info-trio-item {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    grid-template-areas:
-      "icon lbl chev"
-      "icon val chev";
-    column-gap: 1.1rem;
-    row-gap: 0.18rem;
-    text-align: left;
-    padding: 1.2rem 1.3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2.6rem 1.5rem;
     background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    box-shadow: 0 1px 2px rgba(10, 22, 40, 0.03), 0 6px 18px rgba(10, 22, 40, 0.05);
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    /* reset grid-area rules from earlier version */
+    grid-template-columns: none;
+    grid-template-areas: none;
+    column-gap: 0;
+    row-gap: 0;
     position: relative;
     isolation: isolate;
-    transition: transform .15s ease, box-shadow .25s ease, border-color .25s ease;
+    transition: background .2s ease;
   }
-  .info-trio-item:hover {
-    border-color: var(--accent);
-    box-shadow: 0 1px 2px rgba(10, 22, 40, 0.04), 0 10px 24px rgba(10, 22, 40, 0.08);
-  }
-  .info-trio-item:active { transform: scale(0.99); }
+  .info-trio-item:hover { background: var(--paper-soft); transform: none; }
+  .info-trio-item:active { transform: none; }
 
+  /* Large soft-tinted circle, big bold icon, accent dot top-right */
   .info-trio-item .info-icon {
-    grid-area: icon;
+    position: relative;
+    width: 92px;
+    height: 92px;
+    background: rgba(168, 135, 71, 0.13); /* #A88747 @ 13% — soft accent tint */
+    border: none;
+    color: var(--accent-deep);
+    margin: 0 0 1.4rem 0;
+    box-shadow: none;
     align-self: center;
-    width: 46px; height: 46px;
+    grid-area: auto;
+  }
+  .info-trio-item:hover .info-icon { background: rgba(168, 135, 71, 0.13); transform: none; }
+  .info-trio-item .info-icon svg {
+    width: 38px;
+    height: 38px;
+    stroke-width: 1.8;
+  }
+  .info-trio-item .info-icon::after {
+    content: '';
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
     background: var(--accent);
-    border-color: var(--accent);
-    color: var(--paper);
-    margin-bottom: 0;
-    box-shadow: 0 3px 10px rgba(167, 124, 64, 0.25);
+    box-shadow: 0 0 0 3px var(--paper); /* ring isolates dot from tinted circle */
   }
-  .info-trio-item:hover .info-icon { background: var(--accent-deep); transform: none; }
-  .info-trio-item .info-icon svg { width: 20px; height: 20px; }
 
+  /* Large serif label */
   .info-trio-item .lbl {
-    grid-area: lbl;
-    align-self: end;
-    margin-bottom: 0;
-    font-size: 0.6rem;
-    letter-spacing: 0.24em;
-  }
-  .info-trio-item .v {
-    grid-area: val;
-    align-self: start;
-    font-size: 1rem;
-    line-height: 1.3;
-    word-break: break-word;
-  }
-
-  /* Chevron to indicate tappability — hidden on the non-link Adresă item */
-  .info-trio-item::after {
-    content: '›';
-    grid-area: chev;
+    grid-area: auto;
     align-self: center;
     font-family: var(--serif);
-    font-size: 1.8rem;
-    line-height: 1;
-    color: var(--accent);
-    opacity: 0.55;
-    padding-left: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 450;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+    text-transform: none;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.1;
+    font-variation-settings: "opsz" 80, "SOFT" 30;
   }
-  .info-trio-item:nth-child(3)::after { display: none; }
 
-  /* Stretched-link: make the entire card tappable on items whose .v is an <a> */
+  /* Value */
+  .info-trio-item .v {
+    grid-area: auto;
+    align-self: center;
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.45;
+    word-break: break-word;
+    font-variation-settings: normal;
+  }
+
+  /* Drop the chevron — doesn't fit the centered layout */
+  .info-trio-item::after { content: none; }
+
+  /* Stretched-link: whole card is tappable on email/phone items */
   .info-trio-item a.v::before {
     content: '';
     position: absolute;
     inset: 0;
     z-index: 1;
-    border-radius: 12px;
   }
 
   .info-blocks { grid-template-columns: 1fr; gap: 1.4rem; padding: 4rem 1.2rem 2.5rem; }

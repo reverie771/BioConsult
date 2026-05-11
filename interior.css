@@ -12,8 +12,8 @@
   --muted: #5C6B7A;
   --line: rgba(10, 22, 40, 0.12);
   --line-soft: rgba(10, 22, 40, 0.07);
-  --serif: 'Fraunces', 'Times New Roman', serif;
-  --sans: 'Hanken Grotesk', -apple-system, system-ui, sans-serif;
+  --serif: 'Playfair Display', 'Times New Roman', serif;
+  --sans: 'Poppins', -apple-system, system-ui, sans-serif;
   --container: 1280px;
   --pad-x: 2rem;
 }
