@@ -171,6 +171,16 @@ document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el)
   window.addEventListener('resize', () => {
     if (window.innerWidth > 980 && nav.classList.contains('is-open')) setOpen(false);
   });
+
+  // Submenu chevron — tap-to-expand on mobile (desktop keeps hover behavior)
+  nav.querySelectorAll('.has-submenu .chev').forEach((chev) => {
+    chev.addEventListener('click', (e) => {
+      if (window.innerWidth > 980) return;
+      e.preventDefault();
+      e.stopPropagation();
+      chev.closest('.has-submenu').classList.toggle('is-expanded');
+    });
+  });
 })();
 </script>
 

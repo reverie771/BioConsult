@@ -866,17 +866,47 @@ body.nav-open { overflow: hidden; }
 
   /* Submenu shown inline below its parent in the drawer */
   .nav .has-submenu { display: block; position: static; }
-  .nav .has-submenu > a { border-bottom: 1px solid var(--line); }
-  .nav .has-submenu > a .chev { display: none; } /* dropdown affordance moot on mobile */
-  .nav .has-submenu::before { display: none; } /* desktop hover-bridge not needed here */
+  .nav .has-submenu > a {
+    position: relative;
+    padding-right: 50px; /* room for the chevron tap zone */
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .has-submenu > a .chev {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    right: -0.6rem; /* extend tap zone into nav padding for a fatter target */
+    bottom: 0;
+    width: 50px;
+    margin: 0;
+    font-size: 1rem;
+    color: var(--muted);
+    opacity: 1;
+    transition: transform .25s ease, color .25s ease;
+  }
+  .nav .has-submenu.is-expanded > a .chev {
+    transform: rotate(180deg);
+    color: var(--accent-deep);
+  }
+  .nav .has-submenu::before { display: none; }
+
+  /* Submenu collapsed by default — expands when parent .has-submenu has .is-expanded */
   .submenu {
     position: static;
     opacity: 1; visibility: visible; transform: none;
     box-shadow: none; border: none; background: transparent;
     min-width: 0;
-    padding: 0.4rem 0 0.6rem;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
     z-index: auto;
-    transition: none;
+    transition: max-height .3s ease, padding .3s ease;
+  }
+  .nav .has-submenu.is-expanded .submenu {
+    max-height: 500px;
+    padding: 0.4rem 0 0.6rem;
   }
   .submenu::before { display: none; }
   .submenu li a {
